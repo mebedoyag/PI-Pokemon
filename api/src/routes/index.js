@@ -36,8 +36,15 @@ router.get('/pokemons', (req, res) => {
 
 router.get('/pokemons/:idPokemon', (req, res) => {
   const { idPokemon } = req.params;
-  res.json(`Hello!, i am in pokemon/${idPokemon}`)
-})
+
+  utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${idPokemon}` })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+});
 
 router.post('/pokemons', (req, res) => {
   const { name, type } = req.body; 
