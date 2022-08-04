@@ -13,6 +13,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const utils = require('../utils');
 
 router.get('/pokemons', (req, res) => {
   // const { name } = req.query; // -> Use this when a query arrived
@@ -20,25 +21,8 @@ router.get('/pokemons', (req, res) => {
   axios.get('https://pokeapi.co/api/v2/pokemon')
     .then(resp => {
 
-      const getPokeData = ({ name, url }) => {
-        return axios.get(url)
-          .then(resp => {
-            const { types, sprites } = resp.data;
-            const typeNames = types.map(obj => obj.type.name);
-            const imgUrl = sprites.other.dream_world.front_default;
-
-            const pokeData = { name, typeNames, imgUrl };
-
-            return pokeData;
-          })
-          .catch(err => {
-            console.log(err);
-          })
-      };
-
-      Promise.all(resp.data.results.map(poke => getPokeData(poke)))
+      Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
         .then(values => {
-          console.log(values);
           res.json(values);
         })
         .catch(err => {
