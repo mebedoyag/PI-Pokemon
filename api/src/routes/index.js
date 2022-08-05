@@ -16,22 +16,32 @@ const axios = require('axios');
 const utils = require('../utils');
 
 router.get('/pokemons', (req, res) => {
-  // const { name } = req.query; // -> Use this when a query arrived
+  const { name } = req.query;
 
-  axios.get('https://pokeapi.co/api/v2/pokemon')
-    .then(resp => {
-
-      Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
-        .then(values => {
-          res.json(values);
-        })
-        .catch(err => {
-          console.log(err);
-        })
+  if (name) {
+    utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${name}` })
+    .then(data => {
+      res.send(data);
     })
     .catch(err => {
       console.log(err);
     })
+  } else {
+    axios.get('https://pokeapi.co/api/v2/pokemon')
+      .then(resp => {
+  
+        Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
+          .then(values => {
+            res.json(values);
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 });
 
 router.get('/pokemons/:idPokemon', (req, res) => {
