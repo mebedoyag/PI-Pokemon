@@ -10,10 +10,16 @@
 
 // ---> MINE
 
+// Todo's
+// ** Limit the pokemon general search to 40 -- https://pokeapi.co/api/v2/pokemon?limit=40&offset=0
+// ** Refactor the functions in utils.js (using abstraction)
+
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
+
+const { Pokemon } = require('../db');
 
 router.get('/pokemons', (req, res) => {
   const { name } = req.query;
@@ -57,8 +63,15 @@ router.get('/pokemons/:idPokemon', (req, res) => {
 });
 
 router.post('/pokemons', (req, res) => {
-  const { name, type } = req.body; 
-  res.json(`You sent ${name}, ${type} pokemon`);
+  const { name, typeOne, typeTwo, height, weight } = req.body; 
+
+  Pokemon.create({ name, typeOne })
+    .then(p => {
+      res.json(p);
+    })
+    .catch(err => {
+      console.log(err);
+    })
 })
 
 router.get('/types', (req, res) => {

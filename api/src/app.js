@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 
-require('./db.js'); 
+require('./db.js'); // -> Comment for debugging purposes
 
 const server = express();
 
@@ -36,9 +36,9 @@ module.exports = server;
 
 // ---> MINE
 
-const port = 3000;
-server.listen(port, () => {
-  console.log(`Hey there, I am listening to the port: ${port}`)
-})
+// const port = 3000;
+// server.listen(port, () => {
+//   console.log(`Hey there, I am listening to the port: ${port}`)
+// })
 
 // <--- MINE
