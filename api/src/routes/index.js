@@ -19,7 +19,8 @@ const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
 
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
+// const Type = require('../models/Type');
 
 router.get('/pokemons', (req, res) => {
   const { name } = req.query;
@@ -75,8 +76,19 @@ router.post('/pokemons', (req, res) => {
 })
 
 router.get('/types', (req, res) => {
-  res.json('Later I will send you the types ;)')
-})
+  axios.get('https://pokeapi.co/api/v2/type')
+    .then(resp => {
+      const types = resp.data.results.map(obj => {
+        return { name: obj.name }
+      });
+      Type.bulkCreate(types);
+
+      res.json(types);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+});
 
 // <--- MINE
 
