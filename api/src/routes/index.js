@@ -54,13 +54,24 @@ router.get('/pokemons', (req, res) => {
 router.get('/pokemons/:idPokemon', (req, res) => {
   const { idPokemon } = req.params;
 
-  utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${idPokemon}` })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  if (!isNaN(Number(idPokemon))) {
+    utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${idPokemon}` })
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(404).json('Not found');
+      })
+  } else {
+    Pokemon.findByPk(idPokemon)
+      .then(value => {
+        res.json(value);
+      })
+      .catch(err => {
+        res.status(404).json('Not found');
+      })
+  }
 });
 
 router.post('/pokemons', (req, res) => {
