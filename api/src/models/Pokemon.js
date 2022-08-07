@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
       unique: true
     },
     typeOne: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      // allowNull: false,
     },
     typeTwo: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
     height: {
       type: DataTypes.INTEGER,

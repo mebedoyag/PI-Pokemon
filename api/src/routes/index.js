@@ -19,7 +19,7 @@ const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
 
-const { Pokemon, Type } = require('../db');
+const { Pokemon, Type, PokemonType } = require('../db');
 // const Type = require('../models/Type'); // -> TO DELETE
 
 router.get('/pokemons', (req, res) => {
@@ -89,12 +89,19 @@ router.post('/pokemons', (req, res) => {
 
   Pokemon.create({ name, typeOne })
     .then(p => {
-      res.json(p);
+      Type.findByPk(p.typeOne)
+        .then(t => {
+          PokemonType.create({ pokemonId: p.id, typeId: t.id });
+          res.json(p);
+        })
+        .catch(err => {
+          res.status(404).json('Not created');
+        })
     })
     .catch(err => {
       console.log(err);
-    })
-})
+    });
+});
 
 router.get('/types', (req, res) => {
   axios.get('https://pokeapi.co/api/v2/type')
@@ -102,7 +109,7 @@ router.get('/types', (req, res) => {
       const types = resp.data.results.map(obj => {
         return { name: obj.name }
       });
-      Type.bulkCreate(types);
+      Type.bulkCreate(types); 
 
       res.json(types);
     })
