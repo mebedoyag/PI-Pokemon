@@ -20,19 +20,29 @@ const axios = require('axios');
 const utils = require('../utils');
 
 const { Pokemon, Type } = require('../db');
-// const Type = require('../models/Type');
+// const Type = require('../models/Type'); // -> TO DELETE
 
 router.get('/pokemons', (req, res) => {
   const { name } = req.query;
 
   if (name) {
     utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${name}` })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+      .then(data => {
+        res.json(data);
+      })
+      .catch(err => {
+        Pokemon.findAll({
+          where: {
+            name: name
+          }
+        })
+          .then(poke => {
+            res.json(poke);
+          })
+          .catch(err => {
+            res.status(404).json('Not found');
+          })
+      });
   } else {
     axios.get('https://pokeapi.co/api/v2/pokemon')
       .then(resp => {
@@ -54,7 +64,7 @@ router.get('/pokemons', (req, res) => {
 router.get('/pokemons/:idPokemon', (req, res) => {
   const { idPokemon } = req.params;
 
-  if (!isNaN(Number(idPokemon))) {
+  if ( !isNaN( Number(idPokemon) ) ) {
     utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${idPokemon}` })
       .then(data => {
         res.send(data);
@@ -102,6 +112,5 @@ router.get('/types', (req, res) => {
 });
 
 // <--- MINE
-
 
 module.exports = router;

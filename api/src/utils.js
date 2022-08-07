@@ -29,7 +29,7 @@ exports.getPokeDataDetail = ({ url }) => {
 
       return pokeData;
     })
-    .catch(err => {
-      console.log(err);
-    })
+    // .catch(err => {
+    //   console.log(err);
+    // })
 };
