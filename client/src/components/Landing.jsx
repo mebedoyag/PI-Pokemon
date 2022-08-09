@@ -1,8 +1,12 @@
+import { Link } from 'react-router-dom';
+
 function Landing() {
   return (
     <div>
       <h1>Henry Pokemon</h1>
-      <button>Ingresar</button>
+      <Link to="/home">
+        <button>Ingresar</button>
+      </Link>
     </div>
   );
 }
