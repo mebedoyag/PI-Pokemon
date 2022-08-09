@@ -20,7 +20,6 @@ const axios = require('axios');
 const utils = require('../utils');
 
 const { Pokemon, Type, PokemonType } = require('../db');
-// const Type = require('../models/Type'); // -> TO DELETE
 
 router.get('/pokemons', (req, res) => {
   const { name } = req.query;

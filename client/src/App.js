@@ -1,9 +1,19 @@
-import './App.css';
+// import './App.css';
+
+import Landing from './components/Landing'; 
+import NavBar from './components/NavBar';
+import Pokemons from './components/Pokemons';
+import Detail from './components/Detail';
+import Creation from './components/Creation';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
+    <div>
+      <Landing />  
+      <NavBar /> 
+      <Pokemons />
+      <Detail />
+      <Creation />
     </div>
   );
 }
