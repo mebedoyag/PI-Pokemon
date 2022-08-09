@@ -11,6 +11,13 @@ function rootReducer(state = initialState, action) {
     };
   }
 
+  if (action.type === "GET_POKEMON_DETAIL") {
+    return {
+      ...state,
+      pokemonDetail: action.payload
+    }
+  }
+
   return state;
 }
 

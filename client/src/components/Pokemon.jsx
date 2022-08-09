@@ -1,18 +1,35 @@
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getPokemonDetail } from '../actions/index';
 
-function Pokemon({ name, type, image }) {
+function Pokemon(props) {
   return (
     <div>
       <h1>Pokemon</h1>
       <div>
-        <img src={image} alt="poke" />
+        <img src={props.image} alt="poke" />
       </div>
-      <Link to="/detail/2">
-        <p>{name}</p>
+      <Link to="/detail/1" onClick={() => props.getPokemonDetail()}>
+        <p>{props.name}</p>
       </Link>
-      <p>{type}</p>
+      <p>{props.type}</p>
     </div>
   );
  }
 
- export default Pokemon;
+ const mapStateToProps = (state) => {
+  return {};
+ };
+
+ const mapDispatchToProps = (dispatch) => {
+  return {
+    getPokemonDetail: () => dispatch(getPokemonDetail())
+  }
+ };
+
+ export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+ )(Pokemon);
+
+//  export default Pokemon;
