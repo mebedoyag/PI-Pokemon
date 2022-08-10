@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 import { getPokemonDetail } from '../actions/index';
 
 function Pokemon(props) {
+  const handleClick = (id) => {
+    props.getPokemonDetail(id)
+  }
+
   return (
     <div>
       <h1>Pokemon</h1>
       <div>
         <img src={props.image} alt="poke" />
       </div>
-      <Link to="/detail/1" onClick={() => props.getPokemonDetail()}>
-        <p>{props.name}</p>
+      <Link to={`/detail/${props.id}`}>
+        <p onClick={() => handleClick(props.id)}>{props.name}</p>
       </Link>
       <p>{props.type}</p>
     </div>
@@ -23,7 +27,7 @@ function Pokemon(props) {
 
  const mapDispatchToProps = (dispatch) => {
   return {
-    getPokemonDetail: () => dispatch(getPokemonDetail())
+    getPokemonDetail: (id) => dispatch(getPokemonDetail(id))
   }
  };
 

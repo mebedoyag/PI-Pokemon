@@ -8,7 +8,7 @@ function Pokemons(props) {
     <div>
       <h1>Pokemons</h1>
       {
-        props.pokemons.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} />)
+        props.pokemons.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={index + 1} />)
       }
       {/* {
         pokemons.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} />)

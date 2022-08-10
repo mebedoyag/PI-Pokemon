@@ -6,18 +6,18 @@ export function getPokemons() {
     return fetch(`${host}/pokemons`)
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data);
+        console.log(data);
         dispatch({ type: "GET_POKEMONS", payload: data })
       });
   }
 }
 
-export function getPokemonDetail() {
+export function getPokemonDetail(idPokemon) {
+  console.log(idPokemon);
   return function(dispatch) {
-    return fetch(`${host}/pokemons/1`)
+    return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
         dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
       });
   }
