@@ -43,7 +43,7 @@ router.get('/pokemons', (req, res) => {
           })
       });
   } else {
-    axios.get('https://pokeapi.co/api/v2/pokemon')
+    axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
       .then(resp => {
   
         Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
