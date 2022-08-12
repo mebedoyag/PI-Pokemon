@@ -22,3 +22,14 @@ export function getPokemonDetail(idPokemon) {
       });
   }
 }
+
+export function getPokemonByName(name) {
+  console.log(name);
+  return function(dispatch) {
+    return fetch(`${host}/pokemons?name=${name}`)
+      .then(resp => resp.json())
+      .then(data => {
+        dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
+      });
+  }
+}

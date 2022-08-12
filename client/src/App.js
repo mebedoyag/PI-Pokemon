@@ -17,8 +17,11 @@ function App() {
           <Route exact path="/">
             <Landing />  
           </Route>
-          <Route path="/home">
+          <Route exact path="/home">
             <Pokemons />
+          </Route>
+          <Route>
+            <Detail />
           </Route>
           <Route path="/detail/:id">
             <Detail />
