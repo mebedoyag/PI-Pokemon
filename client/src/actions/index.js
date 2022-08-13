@@ -13,7 +13,7 @@ export function getPokemons() {
 }
 
 export function getPokemonDetail(idPokemon) {
-  console.log(idPokemon);
+  // console.log(idPokemon);
   return function(dispatch) {
     return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
@@ -24,7 +24,7 @@ export function getPokemonDetail(idPokemon) {
 }
 
 export function getPokemonByName(name) {
-  console.log(name);
+  // console.log(name);
   return function(dispatch) {
     return fetch(`${host}/pokemons?name=${name}`)
       .then(resp => resp.json())

@@ -3,7 +3,7 @@ import PokeSearch from './PokeSearch';
 // import { bulbasaur } from '../pokeData';
 // import pokemons from '../pokeData';
 import { connect } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Pokemons(props) {
   const [page, setPage] = useState(0);

@@ -1,8 +1,18 @@
 // import { bulbDetails } from '../pokeData';
 
 import { connect } from "react-redux";
+import { getPokemonDetail } from '../actions/index';
+// import { useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 
 function Detail(props) {
+  // let { id } = useParams();
+  // console.log('id', id);
+
+  // useEffect(() => {
+  //   props.getPokemonDetail(id)
+  // }, [])
+
   return (
     <div>
       <h1>Detail</h1>
@@ -33,7 +43,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getPokemonDetail: id => dispatch(getPokemonDetail(id))
+  };
 }
 
 export default connect(
