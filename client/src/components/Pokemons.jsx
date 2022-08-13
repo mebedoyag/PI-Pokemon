@@ -1,5 +1,6 @@
 import Pokemon from './Pokemon';
 import PokeSearch from './PokeSearch';
+import Filter from './Filter';
 // import { bulbasaur } from '../pokeData';
 // import pokemons from '../pokeData';
 import { connect } from 'react-redux';
@@ -19,6 +20,7 @@ function Pokemons(props) {
     <div>
       <h1>Pokemons</h1>
       <PokeSearch />
+      <Filter />
       <button onClick={() => page ? setPage(page - 1) : null}>Previous</button>
       <button onClick={() => page < 4 ? setPage(page + 1) : setPage(0)}>Next</button>
       <span>Current page {page + 1}</span>

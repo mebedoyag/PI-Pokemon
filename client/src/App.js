@@ -20,12 +20,12 @@ function App() {
           <Route exact path="/home">
             <Pokemons />
           </Route>
+          <Route path="/detail/:id">
+            <Detail />
+          </Route>
           <Route path="/detail">
             <Detail />
           </Route>
-          {/* <Route path="/detail/:id">
-            <Detail />
-          </Route> */}
           <Route path="/creation">
             <Creation />
           </Route>
