@@ -32,5 +32,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Landing);
-
-// export default Landing;

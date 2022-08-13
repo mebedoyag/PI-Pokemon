@@ -1,6 +1,7 @@
 const initialState = {
   pokemonsLoaded: [],
-  pokemonDetail: {}
+  pokemonDetail: {},
+  currentPokemons: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -15,6 +16,13 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       pokemonDetail: action.payload
+    }
+  }
+
+  if (action.type === "GET_CURRENT_POKEMONS") {
+    return {
+      ...state,
+      currentPokemons: action.payload
     }
   }
 

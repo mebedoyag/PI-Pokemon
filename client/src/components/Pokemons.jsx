@@ -1,54 +1,49 @@
 import Pokemon from './Pokemon';
 import PokeSearch from './PokeSearch';
 import Filter from './Filter';
-// import { bulbasaur } from '../pokeData';
-// import pokemons from '../pokeData';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import { getCurrentPokemons } from '../actions/index';
 
 function Pokemons(props) {
   const [page, setPage] = useState(0);
-  // const [currentPoke, setCurrentPoke] = useState([]);
   const pokeNumber = 12;
-  // const pagesQty = Math.ceil(props.pokemons.length / pokeNumber); // IT DOESN'T WORKS, CHECK
+  const handleClick = () => {
+    page < 3 ? setPage(page + 1) : setPage(0);
 
-  // useEffect(() => {
-  //   setCurrentPoke(props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber))
-  // });
+    // props.getCurrentPokemons(props.pokemons, page + 1);
+  }
 
   return (
     <div>
       <h1>Pokemons</h1>
       <PokeSearch />
-      <Filter />
+      <Filter page={page} />
       <button onClick={() => page ? setPage(page - 1) : null}>Previous</button>
-      <button onClick={() => page < 4 ? setPage(page + 1) : setPage(0)}>Next</button>
+      <button onClick={handleClick}>Next</button>
       <span>Current page {page + 1}</span>
       {
         props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber).map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={poke.id} />)
-        // currentPoke.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={index + 1} />)
       }
-      {/* {
-        pokemons.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} />)
-      } */}
-      {/* <Pokemon name={bulbasaur.name} type={bulbasaur.typeNames[0]} image={bulbasaur.imgUrl} />  */}
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    pokemons: state.pokemonsLoaded
+    pokemons: state.pokemonsLoaded,
+    currentPokes: state.currentPokemons,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getCurrentPokemons: (arr, n) => dispatch(getCurrentPokemons(arr, n))
+  };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Pokemons);
-
-// export default Pokemons;

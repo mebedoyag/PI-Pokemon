@@ -20,7 +20,7 @@ function Creation() {
     setError(validate({
       ...input, 
       [e.target.name]: e.target.value
-    })); // -> HERE <-
+    }));
   }
 
   return (

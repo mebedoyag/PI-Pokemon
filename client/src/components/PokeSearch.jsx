@@ -14,7 +14,6 @@ function PokeSearch(props) {
           <span>Le's go</span>
         </button>
       </Link>
-      {/* <input type="button" value="Let's go" /> */}
     </div>
   )
 }
@@ -33,5 +32,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PokeSearch);
-
-// export default PokeSearch;

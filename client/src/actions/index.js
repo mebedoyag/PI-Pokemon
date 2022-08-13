@@ -1,4 +1,3 @@
-// const host = 'http://localhost:3001/pokemons';
 const host = 'http://localhost:3001';
 
 export function getPokemons() {
@@ -31,5 +30,15 @@ export function getPokemonByName(name) {
       .then(data => {
         dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
       });
+  }
+}
+
+export function getCurrentPokemons(pokemons, num) {
+  const pokeByPage = 12;  
+  const currentPokemons = pokemons.slice(num * pokeByPage, (num + 1) * pokeByPage);
+
+  return {
+    type: "GET_CURRENT_POKEMONS",
+    payload: currentPokemons,
   }
 }
