@@ -44,6 +44,23 @@ export function getTypes() {
   }
 }
 
+export function postPokemons(poke) {
+  return function(dispatch) {
+    return fetch(`${host}/pokemons`, { 
+      method: 'POST', 
+      headers: { 
+        'Content-Type': 'application/json;charset=utf-8' 
+      }, 
+      body: poke
+    })
+      .then(resp => resp.json())
+      .then(data => {
+        // console.log(data);
+        dispatch({ type: "POST_POKEMON", payload: data })
+      });
+  }
+}
+
 // export function getCurrentPokemons(pokemons, num) {
 //   const pokeByPage = 12;  
 //   const currentPokemons = pokemons.slice(num * pokeByPage, (num + 1) * pokeByPage);
