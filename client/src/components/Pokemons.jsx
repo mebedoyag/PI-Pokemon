@@ -2,7 +2,7 @@ import Pokemon from './Pokemon';
 import PokeSearch from './PokeSearch';
 import Filter from './Filter';
 import { connect } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { getCurrentPokemons } from '../actions/index';
 
@@ -24,7 +24,7 @@ function Pokemons(props) {
       <button onClick={handleClick}>Next</button>
       <span>Current page {page + 1}</span>
       {
-        props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber).map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={poke.id} />)
+        props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber).map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)
       }
     </div>
   );

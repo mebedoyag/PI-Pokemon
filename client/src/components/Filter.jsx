@@ -1,10 +1,19 @@
+import { useHistory } from 'react-router-dom';
 
+function Filter(props) {
+  let history = useHistory();
 
-function Filter() {
+  const handleChange = (e) => {
+    // console.log(e.target.value);
+    const path = `/filter/${e.target.value}`;
+    // console.log(path);
+    history.replace(path);
+  }
+
   return (
     <div>
       <label>Filter by: </label>
-      <select>
+      <select onChange={handleChange}>
         <optgroup label="TYPE">
           <option value="normal">Normal</option>
           <option value="fighting">fighting</option>

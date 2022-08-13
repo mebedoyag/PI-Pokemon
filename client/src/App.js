@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Pokemons from './components/Pokemons';
 import Detail from './components/Detail';
 import Creation from './components/Creation';
+import Filtered from './components/Filtered';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/creation">
             <Creation />
+          </Route>
+          <Route path="/filter/:attribute">
+            <Filtered />
           </Route>
         </Switch>
       </BrowserRouter>
