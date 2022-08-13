@@ -32,6 +32,15 @@ function Creation(props) {
     e.preventDefault();
     
     props.postPokemons(JSON.stringify({ ...input }));
+
+    // console.log(e.target);
+    // e.target.reset();
+    setInput({
+      name: '',
+      typeOne: '',
+      height: '',
+      weight: ''
+    });
   }
 
   return (

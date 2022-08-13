@@ -30,7 +30,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === "POST_POKEMON") {
     return {
       ...state,
-      pokemonDetail: action.payload
+      // pokemonsLoaded: [...pokemonsLoaded, action.payload]
     }
   }
 
