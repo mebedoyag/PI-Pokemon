@@ -25,7 +25,7 @@ function Pokemons(props) {
       <button onClick={() => page < 4 ? setPage(page + 1) : setPage(0)}>Next</button>
       <span>Current page {page + 1}</span>
       {
-        props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber).map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={index + 1} />)
+        props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber).map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={poke.id} />)
         // currentPoke.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames[0]} image={poke.imgUrl} key={index + 1} id={index + 1} />)
       }
       {/* {
