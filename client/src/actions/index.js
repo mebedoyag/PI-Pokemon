@@ -5,7 +5,7 @@ export function getPokemons() {
     return fetch(`${host}/pokemons`)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         dispatch({ type: "GET_POKEMONS", payload: data })
       });
   }
@@ -33,12 +33,23 @@ export function getPokemonByName(name) {
   }
 }
 
-export function getCurrentPokemons(pokemons, num) {
-  const pokeByPage = 12;  
-  const currentPokemons = pokemons.slice(num * pokeByPage, (num + 1) * pokeByPage);
-
-  return {
-    type: "GET_CURRENT_POKEMONS",
-    payload: currentPokemons,
+export function getTypes() {
+  return function(dispatch) {
+    return fetch(`${host}/types`)
+      .then(resp => resp.json())
+      .then(data => {
+        // console.log(data);
+        dispatch({ type: "GET_TYPES", payload: data })
+      });
   }
 }
+
+// export function getCurrentPokemons(pokemons, num) {
+//   const pokeByPage = 12;  
+//   const currentPokemons = pokemons.slice(num * pokeByPage, (num + 1) * pokeByPage);
+
+//   return {
+//     type: "GET_CURRENT_POKEMONS",
+//     payload: currentPokemons,
+//   }
+// }

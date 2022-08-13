@@ -4,10 +4,11 @@ import Pokemon from './Pokemon';
 
 function Filtered(props) {
   let params = useParams();
-  console.log(params.attribute);
+  // console.log(params.attribute);
+  // console.log(props.types);
 
   let pokeFiltered = props.pokemons.filter(poke => {
-    console.log(poke);
+    // console.log(poke);
     
     return poke.typeNames.includes(params.attribute);
   });
@@ -22,7 +23,8 @@ function Filtered(props) {
 
 const mapStateToProps = (state) => {
   return {
-    pokemons: state.pokemonsLoaded
+    pokemons: state.pokemonsLoaded,
+    types: state.types
   };
 };
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getPokemons } from '../actions/index';
+import { getPokemons, getTypes } from '../actions/index';
 import { connect } from 'react-redux';
 
 function Landing(props) {
@@ -9,6 +9,7 @@ function Landing(props) {
       <Link to="/home">
         <button onClick={() => {
           props.getPokemons();
+          props.getTypes();
           // console.log(props.pokemons);
           }}>Ingresar</button>
       </Link>
@@ -24,7 +25,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPokemons: () => dispatch(getPokemons())
+    getPokemons: () => dispatch(getPokemons()),
+    getTypes: () => dispatch(getTypes())
   }
 };
 
