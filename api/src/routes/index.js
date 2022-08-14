@@ -83,23 +83,28 @@ router.get('/pokemons/:idPokemon', (req, res) => {
   }
 });
 
-router.post('/pokemons', (req, res) => {
+router.post('/pokemons', async (req, res) => {
   const { name, typeOne, typeTwo, height, weight } = req.body; 
 
-  Pokemon.create({ name, typeOne })
-    .then(p => {
-      Type.findByPk(p.typeOne)
-        .then(t => {
-          PokemonType.create({ pokemonId: p.id, typeId: t.id });
-          res.json(p);
-        })
-        .catch(err => {
-          res.status(404).json('Not created');
-        })
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  const poke = await Pokemon.create({ name, height, weight });
+  await poke.setTypes([typeOne]);
+
+  res.json(poke);
+
+  // Pokemon.create({ name, typeOne })
+  //   .then(p => {
+  //     Type.findByPk(p.typeOne)
+  //       .then(t => {
+  //         PokemonType.create({ pokemonId: p.id, typeId: t.id });
+  //         res.json(p);
+  //       })
+  //       .catch(err => {
+  //         res.status(404).json('Not created');
+  //       })
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
 });
 
 router.get('/types', (req, res) => {

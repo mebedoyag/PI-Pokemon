@@ -21,9 +21,9 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       // allowNull: false,
     },
-    typeTwo: {
-      type: DataTypes.INTEGER,
-    },
+    // typeTwo: {
+    //   type: DataTypes.INTEGER,
+    // },
     height: {
       type: DataTypes.INTEGER,
       defaultValue: 10
