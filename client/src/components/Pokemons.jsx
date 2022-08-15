@@ -29,7 +29,7 @@ function Pokemons(props) {
 const mapStateToProps = (state) => {
   return {
     pokemons: state.pokemonsLoaded,
-    currentPokes: state.currentPokemons,
+    // currentPokes: state.currentPokemons,
   }
 };
 
