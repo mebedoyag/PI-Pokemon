@@ -47,8 +47,21 @@ router.get('/pokemons', (req, res) => {
       .then(resp => {
   
         Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
-          .then(values => {
-            res.json(values);
+          .then(async values => {
+            
+            const pokes = await Pokemon.findAll({
+              include: Type,
+            });
+            const result = pokes.map(poke => ({
+              name: poke.name,
+              id: poke.id,
+              typeNames: [poke.types[0].name],
+              imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
+            }));
+
+            res.json([...values, ...result]);
+
+            // res.json(values);
           })
           .catch(err => {
             console.log(err);
@@ -121,6 +134,19 @@ router.get('/types', (req, res) => {
       console.log(err);
     })
 });
+
+router.get('/test', async (req, res) => {
+  const pokes = await Pokemon.findAll({
+    include: Type,
+  });
+  const result = pokes.map(poke => ({
+    name: poke.name,
+    id: poke.id,
+    typeNames: [poke.types[0].name],
+    imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
+  }))
+  res.json(result)
+})
 
 // <--- MINE
 
