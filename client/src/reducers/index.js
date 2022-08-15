@@ -1,7 +1,8 @@
 const initialState = {
   pokemonsLoaded: [],
   pokemonDetail: {},
-  types: []
+  types: [],
+  currentPage: 0
 };
 
 function rootReducer(state = initialState, action) {
@@ -37,6 +38,13 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       pokemonDetail: {}
+    }
+  }
+
+  if (action.type === "CHANGE_PAGE") {
+    return {
+      ...state,
+      currentPage: action.payload
     }
   }
 

@@ -64,3 +64,10 @@ export function postPokemons(poke) {
 export function resetPokemonDetail() {
   return { type: "RESET_POKEMON_DETAIL" };
 }
+
+export function changePage(page) {
+  return {
+    type: "CHANGE_PAGE",
+    payload: page
+  }
+}
