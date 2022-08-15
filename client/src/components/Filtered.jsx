@@ -36,5 +36,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Filtered);
-
-// export default Filtered;

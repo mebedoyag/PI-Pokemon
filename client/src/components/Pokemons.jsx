@@ -4,15 +4,11 @@ import Filter from './Filter';
 import { connect } from 'react-redux';
 import { useState } from 'react';
 
-// import { getCurrentPokemons } from '../actions/index';
-
 function Pokemons(props) {
   const [page, setPage] = useState(0);
   const pokeNumber = 12;
   const handleClick = () => {
     page < 3 ? setPage(page + 1) : setPage(0);
-
-    // props.getCurrentPokemons(props.pokemons, page + 1);
   }
 
   return (
@@ -38,9 +34,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // getCurrentPokemons: (arr, n) => dispatch(getCurrentPokemons(arr, n))
-  };
+  return {};
 };
 
 export default connect(

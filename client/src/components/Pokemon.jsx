@@ -16,7 +16,6 @@ function Pokemon(props) {
       <Link to={`/detail/${props.id}`}>
         <p onClick={() => handleClick(props.id)}>{props.name}</p>
       </Link>
-      {/* <p>{props.type}</p> */}
       <p>{props.type[0]}</p>
       <p>{props.type[1]}</p>
     </div>
@@ -37,5 +36,3 @@ function Pokemon(props) {
   mapStateToProps,
   mapDispatchToProps
  )(Pokemon);
-
-//  export default Pokemon;

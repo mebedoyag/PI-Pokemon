@@ -34,7 +34,6 @@ function Creation(props) {
     props.postPokemons(JSON.stringify({ ...input }));
 
     // console.log(e.target);
-    // e.target.reset();
     setInput({
       name: '',
       typeOne: '',
@@ -84,5 +83,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Creation);
-
-// export default Creation;

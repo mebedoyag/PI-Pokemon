@@ -1,5 +1,3 @@
-// import { bulbDetails } from '../pokeData';
-
 import { connect } from "react-redux";
 import { getPokemonDetail } from '../actions/index';
 

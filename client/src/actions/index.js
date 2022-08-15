@@ -60,13 +60,3 @@ export function postPokemons(poke) {
       });
   }
 }
-
-// export function getCurrentPokemons(pokemons, num) {
-//   const pokeByPage = 12;  
-//   const currentPokemons = pokemons.slice(num * pokeByPage, (num + 1) * pokeByPage);
-
-//   return {
-//     type: "GET_CURRENT_POKEMONS",
-//     payload: currentPokemons,
-//   }
-// }
