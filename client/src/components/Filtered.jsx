@@ -7,16 +7,19 @@ function Filtered(props) {
   let att = params.attribute;
   let pokeFiltered = [];
 
+  const pokeNumber = 12;
+  const currentPokemons = props.pokemons.slice(props.page * pokeNumber, (props.page + 1) * pokeNumber);
+
   if (att === "existing") {
-    pokeFiltered = props.pokemons.filter(poke => {
+    pokeFiltered = currentPokemons.filter(poke => {
       return !isNaN( Number(poke.id) );
     });
   } else if (att === "created") {
-    pokeFiltered = props.pokemons.filter(poke => {
+    pokeFiltered = currentPokemons.filter(poke => {
       return isNaN( Number(poke.id) );
     });
   } else {
-    pokeFiltered = props.pokemons.filter(poke => {
+    pokeFiltered = currentPokemons.filter(poke => {
       return poke.typeNames.includes(params.attribute);
     });
   } 
@@ -32,7 +35,8 @@ function Filtered(props) {
 const mapStateToProps = (state) => {
   return {
     pokemons: state.pokemonsLoaded,
-    types: state.types
+    types: state.types,
+    page: state.currentPage
   };
 };
 
