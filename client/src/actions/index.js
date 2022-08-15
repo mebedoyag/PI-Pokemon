@@ -5,14 +5,12 @@ export function getPokemons() {
     return fetch(`${host}/pokemons`)
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data);
         dispatch({ type: "GET_POKEMONS", payload: data })
       });
   }
 }
 
 export function getPokemonDetail(idPokemon) {
-  // console.log(idPokemon);
   return function(dispatch) {
     return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
@@ -23,7 +21,6 @@ export function getPokemonDetail(idPokemon) {
 }
 
 export function getPokemonByName(name) {
-  // console.log(name);
   return function(dispatch) {
     return fetch(`${host}/pokemons?name=${name}`)
       .then(resp => resp.json())
@@ -38,7 +35,6 @@ export function getTypes() {
     return fetch(`${host}/types`)
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data);
         dispatch({ type: "GET_TYPES", payload: data })
       });
   }
@@ -55,7 +51,6 @@ export function postPokemons(poke) {
     })
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data);
         dispatch({ type: "POST_POKEMON", payload: data })
       });
   }

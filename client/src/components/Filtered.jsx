@@ -6,17 +6,12 @@ function Filtered(props) {
   let params = useParams();
   let att = params.attribute;
   let pokeFiltered = [];
-  // console.log(params.attribute);
-  // console.log(props.types);
 
   if (att === "existing") {
-    // console.log('existingggg');
     pokeFiltered = props.pokemons.filter(poke => {
-      // console.log(typeof poke.id);
       return !isNaN( Number(poke.id) );
     });
   } else if (att === "created") {
-    // console.log('createdddd');
     pokeFiltered = props.pokemons.filter(poke => {
       return isNaN( Number(poke.id) );
     });

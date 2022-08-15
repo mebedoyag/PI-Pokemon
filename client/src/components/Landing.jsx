@@ -10,7 +10,6 @@ function Landing(props) {
         <button onClick={() => {
           props.getPokemons();
           props.getTypes();
-          // console.log(props.pokemons);
           }}>Ingresar</button>
       </Link>
     </div>

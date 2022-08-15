@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import { getPokemonDetail } from '../actions/index';
 
 function Pokemon(props) {
-  // const handleClick = (id) => {
-  //   props.getPokemonDetail(id)
-  // }
 
   return (
     <div>
@@ -14,7 +11,6 @@ function Pokemon(props) {
         <img src={props.image} alt="poke" />
       </div>
       <Link to={`/detail/${props.id}`}>
-        {/* <p onClick={() => handleClick(props.id)}>{props.name}</p> */}
         <p>{props.name}</p> 
       </Link>
       <p>{props.type[0]}</p>

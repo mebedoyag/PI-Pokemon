@@ -21,7 +21,6 @@ function Creation(props) {
       ...input, 
       [e.target.name]: e.target.value
     });
-    // alert(validate);
     setError(validate({
       ...input, 
       [e.target.name]: e.target.value
@@ -33,7 +32,6 @@ function Creation(props) {
     
     props.postPokemons(JSON.stringify({ ...input }));
 
-    // console.log(e.target);
     setInput({
       name: '',
       typeOne: '',

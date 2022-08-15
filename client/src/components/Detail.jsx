@@ -9,8 +9,6 @@ function Detail(props) {
   const { getPokemonDetail, resetPokemonDetail } = props;
   
   useEffect(() => {
-    // console.log('hellooo, I am in the detail at mounting cycle');
-    // console.log('params id', params.id);
     getPokemonDetail(params.id);
   }, []);
 

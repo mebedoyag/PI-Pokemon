@@ -4,9 +4,7 @@ function Filter(props) {
   let history = useHistory();
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
     const path = `/filter/${e.target.value}`;
-    // console.log(path);
     history.replace(path);
   }
 

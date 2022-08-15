@@ -2,7 +2,7 @@ const initialState = {
   pokemonsLoaded: [],
   pokemonDetail: {},
   types: [],
-  currentPage: 0
+  currentPage: 0,
 };
 
 function rootReducer(state = initialState, action) {
