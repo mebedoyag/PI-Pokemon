@@ -1,7 +1,22 @@
 import { connect } from "react-redux";
-import { getPokemonDetail } from '../actions/index';
+import { getPokemonDetail, resetPokemonDetail } from '../actions/index';
+
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Detail(props) {
+  let params = useParams();
+  const { getPokemonDetail, resetPokemonDetail } = props;
+  
+  useEffect(() => {
+    // console.log('hellooo, I am in the detail at mounting cycle');
+    // console.log('params id', params.id);
+    getPokemonDetail(params.id);
+  }, []);
+
+  useEffect(() => {
+    return () => resetPokemonDetail();
+  }, []);
 
   return (
     <div>
@@ -26,7 +41,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getPokemonDetail: id => dispatch(getPokemonDetail(id))
+    getPokemonDetail: id => dispatch(getPokemonDetail(id)),
+    resetPokemonDetail: () => dispatch(resetPokemonDetail())
   };
 }
 

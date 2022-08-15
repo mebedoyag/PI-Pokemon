@@ -60,3 +60,7 @@ export function postPokemons(poke) {
       });
   }
 }
+
+export function resetPokemonDetail() {
+  return { type: "RESET_POKEMON_DETAIL" };
+}

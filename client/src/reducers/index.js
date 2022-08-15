@@ -33,6 +33,13 @@ function rootReducer(state = initialState, action) {
     }
   }
 
+  if (action.type === "RESET_POKEMON_DETAIL") {
+    return {
+      ...state,
+      pokemonDetail: {}
+    }
+  }
+
   return state;
 }
 
