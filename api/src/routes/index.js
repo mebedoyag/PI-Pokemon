@@ -120,32 +120,46 @@ router.post('/pokemons', async (req, res) => {
   //   });
 });
 
-router.get('/types', (req, res) => {
-  axios.get('https://pokeapi.co/api/v2/type')
-    .then(resp => {
-      const types = resp.data.results.map(obj => {
-        return { name: obj.name }
-      });
-      Type.bulkCreate(types); 
+router.get('/types', async (req, res) => {
+  const types = await Type.findAll();
 
-      res.json(types);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  if (!types.length) {
+    // console.log('There is nothing');
+    axios.get('https://pokeapi.co/api/v2/type')
+      .then(resp => {
+        const types = resp.data.results.map(obj => { 
+          return { name: obj.name } 
+        });
+        Type.bulkCreate(types); 
+  
+        res.json(types);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  } else {
+    res.json(types);
+  }
 });
 
 router.get('/test', async (req, res) => {
-  const pokes = await Pokemon.findAll({
-    include: Type,
-  });
-  const result = pokes.map(poke => ({
-    name: poke.name,
-    id: poke.id,
-    typeNames: [poke.types[0].name],
-    imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
-  }))
-  res.json(result)
+  const types = await Type.findAll();
+
+  if (!types.length) {
+    res.json('There is nothing')
+  } else {
+    res.json(types);
+  }
+  // const pokes = await Pokemon.findAll({
+  //   include: Type,
+  // });
+  // const result = pokes.map(poke => ({
+  //   name: poke.name,
+  //   id: poke.id,
+  //   typeNames: [poke.types[0].name],
+  //   imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
+  // }))
+  // res.json(result);
 })
 
 // <--- MINE
