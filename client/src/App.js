@@ -8,6 +8,7 @@ import Pokemons from './components/Pokemons';
 import Detail from './components/Detail';
 import Creation from './components/Creation';
 import Filtered from './components/Filtered';
+import Ordered from './components/Ordered';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/filter/:attribute">
             <Filtered />
+          </Route>
+          <Route path="/order/:name">
+            <Ordered />
           </Route>
         </Switch>
       </BrowserRouter>

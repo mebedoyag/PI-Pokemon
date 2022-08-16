@@ -1,6 +1,7 @@
 import Pokemon from './Pokemon';
 import PokeSearch from './PokeSearch';
 import Filter from './Filter';
+import Order from './Order';
 import { connect } from 'react-redux';
 
 import { changePage } from '../actions/index';
@@ -15,6 +16,7 @@ function Pokemons(props) {
       <h1>Pokemons</h1>
       <PokeSearch />
       <Filter page={page} />
+      <Order />
       <button onClick={() => page ? changePage(page - 1) : null}>Previous</button>
       <button onClick={() => page < 3 ? changePage(page + 1) : changePage(0)}>Next</button>
       <span>Current page {page + 1}</span>
