@@ -98,8 +98,9 @@ router.get('/pokemons/:idPokemon', (req, res) => {
 
 router.post('/pokemons', async (req, res) => {
   const { name, typeOne, typeTwo, height, weight } = req.body; 
+  const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png";
 
-  const poke = await Pokemon.create({ name, height, weight });
+  const poke = await Pokemon.create({ name, height, weight, imgUrl });
   await poke.setTypes([typeOne]);
 
   res.json(poke);

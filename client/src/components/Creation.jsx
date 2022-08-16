@@ -11,7 +11,11 @@ function Creation(props) {
     name: '',
     typeOne: '',
     height: '',
-    weight: ''
+    weight: '',
+    life: '',
+    attack: '',
+    defense: '',
+    speed: ''
   });
 
   const [error, setError] = useState({});
@@ -36,7 +40,11 @@ function Creation(props) {
       name: '',
       typeOne: '',
       height: '',
-      weight: ''
+      weight: '',
+      life: '',
+      attack: '',
+      defense: '',
+      speed: ''
     });
   }
 
@@ -64,6 +72,24 @@ function Creation(props) {
         <label htmlFor="weight">Weight</label>
         <input type="text" name="weight" id="weight" onChange={handleInpChan} value={input.weight} />
       </div>
+
+      <div>
+        <label htmlFor="life">Life</label>
+        <input type="text" name="life" id="life" onChange={handleInpChan} value={input.life} />
+      </div>
+      <div>
+        <label htmlFor="attack">Attack</label>
+        <input type="text" name="attack" id="attack" onChange={handleInpChan} value={input.attack} />
+      </div>
+      <div>
+        <label htmlFor="defense">Defense</label>
+        <input type="text" name="defense" id="defense" onChange={handleInpChan} value={input.defense} />
+      </div>
+      <div>
+        <label htmlFor="speed">Speed</label>
+        <input type="text" name="speed" id="speed" onChange={handleInpChan} value={input.speed} />
+      </div>
+      
       <div>
         <input type="submit" value="Create" />
       </div>

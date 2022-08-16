@@ -17,10 +17,10 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    typeOne: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-    },
+    // typeOne: {
+    //   type: DataTypes.INTEGER,
+    //   // allowNull: false,
+    // },
     // typeTwo: {
     //   type: DataTypes.INTEGER,
     // },
@@ -31,6 +31,25 @@ module.exports = (sequelize) => {
     weight: {
       type: DataTypes.INTEGER,
       defaultValue: 10,
+    },
+    life: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10
+    },
+    attack: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10,
+    },
+    defense: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10,
+    },
+    speed: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10,
+    },
+    imgUrl: {
+      type: DataTypes.STRING
     }
   }, {
     timestamps: false
