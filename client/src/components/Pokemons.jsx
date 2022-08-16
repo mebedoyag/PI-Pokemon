@@ -14,9 +14,9 @@ function Pokemons(props) {
   return (
     <div>
       <h1>Pokemons</h1>
-      <PokeSearch />
+      {/* <PokeSearch />
       <Filter page={page} />
-      <Order />
+      <Order /> */}
       <button onClick={() => page ? changePage(page - 1) : null}>Previous</button>
       <button onClick={() => page < 3 ? changePage(page + 1) : changePage(0)}>Next</button>
       <span>Current page {page + 1}</span>

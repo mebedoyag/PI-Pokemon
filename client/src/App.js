@@ -9,33 +9,41 @@ import Detail from './components/Detail';
 import Creation from './components/Creation';
 import Filtered from './components/Filtered';
 import Ordered from './components/Ordered';
+import Inputs from './components/Inputs';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
-        <NavBar /> 
         <Switch>
           <Route exact path="/">
             <Landing />  
           </Route>
-          <Route exact path="/home">
-            <Pokemons />
-          </Route>
-          <Route path="/detail/:id">
-            <Detail />
-          </Route>
-          <Route path="/detail">
-            <Detail />
-          </Route>
-          <Route path="/creation">
-            <Creation />
-          </Route>
-          <Route path="/filter/:attribute">
-            <Filtered />
-          </Route>
-          <Route path="/order/:name">
-            <Ordered />
+          <Route>
+            <NavBar /> 
+            <Switch>
+              <Route path="/creation">
+                <Creation />
+              </Route>
+              <Route>
+                <Inputs />
+                <Route exact path="/home">
+                  <Pokemons />
+                </Route>
+                <Route path="/detail/:id">
+                  <Detail />
+                </Route>
+                <Route path="/detail">
+                  <Detail />
+                </Route>
+                <Route path="/filter/:attribute">
+                  <Filtered />
+                </Route>
+                <Route path="/order/:name">
+                  <Ordered />
+                </Route>
+              </Route>
+            </Switch>
           </Route>
         </Switch>
       </BrowserRouter>
