@@ -10,6 +10,7 @@ function Creation(props) {
   const [input, setInput] = useState({
     name: '',
     typeOne: '',
+    typeTwo: '',
     height: '',
     weight: '',
     life: '',
@@ -39,6 +40,7 @@ function Creation(props) {
     setInput({
       name: '',
       typeOne: '',
+      typeTwo: '',
       height: '',
       weight: '',
       life: '',
@@ -63,6 +65,14 @@ function Creation(props) {
             props.types.map(type => <option key={type.id} value={type.id}>{type.name}</option>)
           }
         </select>
+
+        <label htmlFor="typeTwo">Type</label>
+        <select name="typeTwo" id="typeTwo" onChange={handleInpChan}>
+          {
+            props.types.map(type => <option key={type.id} value={type.id}>{type.name}</option>)
+          }
+        </select>
+
       </div>
       <div>
         <label htmlFor="height">Height</label>
