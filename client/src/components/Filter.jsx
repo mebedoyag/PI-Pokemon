@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 function Filter(props) {
   let history = useHistory();
@@ -13,10 +14,13 @@ function Filter(props) {
       <label>Filter by: </label>
       <select onChange={handleChange}>
         <optgroup label="TYPE">
-          <option value="normal">Normal</option>
+          {/* <option value="normal">Normal</option>
           <option value="fighting">fighting</option>
           <option value="flying">Flying</option>
-          <option value="poison">Poison</option>
+          <option value="poison">Poison</option> */}
+          {
+            props.types.map(type => <option key={type.id} value={type.name}>{type.name}</option>)
+          }
         </optgroup>
         <optgroup label="ORIGIN">
           <option value="existing">Existing</option>
@@ -27,4 +31,19 @@ function Filter(props) {
   )
 }
 
-export default Filter;
+const mapStateToProps = (state) => {
+  return {
+    types: state.types
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Filter);
+
+// export default Filter;

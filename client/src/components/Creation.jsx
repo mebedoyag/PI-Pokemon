@@ -47,8 +47,14 @@ function Creation(props) {
         <input type="text" name="name" id="name" onChange={handleInpChan} value={input.name} />
       </div>
       <div>
+        {/* <label htmlFor="typeOne">Type</label>
+        <input type="text" name="typeOne" id="typeOne" onChange={handleInpChan} value={input.typeOne} /> */}
         <label htmlFor="typeOne">Type</label>
-        <input type="text" name="typeOne" id="typeOne" onChange={handleInpChan} value={input.typeOne} />
+        <select name="typeOne" id="typeOne" onChange={handleInpChan}>
+          {
+            props.types.map(type => <option key={type.id} value={type.id}>{type.name}</option>)
+          }
+        </select>
       </div>
       <div>
         <label htmlFor="height">Height</label>
@@ -67,7 +73,8 @@ function Creation(props) {
 
 const mapStateToProps = (state) => {
   return {
-    pokemon: state.pokemonDetail
+    pokemon: state.pokemonDetail,
+    types: state.types
   };
 };
 
