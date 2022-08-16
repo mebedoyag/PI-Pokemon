@@ -23,8 +23,8 @@ function Filter(props) {
           }
         </optgroup>
         <optgroup label="ORIGIN">
-          <option value="existing">Existing</option>
-          <option value="created">Created</option>
+          <option key={100} value="existing">Existing</option>
+          <option key={101} value="created">Created</option>
         </optgroup>
       </select>
     </div>

@@ -25,13 +25,13 @@ function App() {
               <Route path="/creation">
                 <Creation />
               </Route>
+              <Route path="/detail/:id">
+                <Detail />
+              </Route>
               <Route>
                 <Inputs />
                 <Route exact path="/home">
                   <Pokemons />
-                </Route>
-                <Route path="/detail/:id">
-                  <Detail />
                 </Route>
                 <Route path="/detail">
                   <Detail />

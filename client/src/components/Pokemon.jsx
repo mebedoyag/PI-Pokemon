@@ -11,10 +11,10 @@ function Pokemon(props) {
         <img src={props.image} alt="poke" />
       </div>
       <Link to={`/detail/${props.id}`}>
-        <p>{props.name}</p> 
+        <p>Name: {props.name}</p> 
       </Link>
-      <p>{props.type[0]}</p>
-      <p>{props.type[1]}</p>
+      <p>Type one: {props.type[0]}</p>
+      <p>Type two: {props.type[1]}</p>
     </div>
   );
  }

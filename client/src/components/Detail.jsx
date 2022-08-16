@@ -22,10 +22,14 @@ function Detail(props) {
       <div>
         <img src={props.pokemon.imgUrl} alt="poke details" />
       </div>
-      <p>{props.pokemon.name}</p>
-      <p>{props.pokemon.typeNames}</p>
-      <p>{props.pokemon.height}</p>
-      <p>{props.pokemon.weight}</p>       
+      <p>Name: {props.pokemon.name}</p>
+      <p>Types: {props.pokemon.typeNames}</p>
+      <p>Height: {props.pokemon.height}</p>
+      <p>Weight: {props.pokemon.weight}</p>
+      <p>Life: {props.pokemon.life}</p>  
+      <p>Attack: {props.pokemon.attack}</p>  
+      <p>Defense: {props.pokemon.defense}</p>  
+      <p>Speed: {props.pokemon.speed}</p>         
     </div>
     
   );
