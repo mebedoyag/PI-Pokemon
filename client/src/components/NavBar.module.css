@@ -1,0 +1,30 @@
+.container {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #1A4D2E;
+}
+
+.title {
+  font-size: 3rem;
+  color: #FAF3E3;
+  font-weight: normal;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.list li {
+  color: #FAF3E3;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.list li:hover {
+  color: #FF9F29;
+}
