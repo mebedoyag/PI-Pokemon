@@ -11,7 +11,7 @@ function Order() {
 
   return (
     <div>
-      <p>Order: </p>
+      <span>Order: </span>
       <input type="radio" id="desc" name="order" value="desc" onChange={handleChange} />
       <label htmlFor="desc">Descendent</label>
       <input type="radio" id="asc" name="order" value="asc" onChange={handleChange} />
