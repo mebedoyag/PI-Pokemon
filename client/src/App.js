@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ import Inputs from './components/Inputs';
 
 function App() {
   return (
-    <div>
+    <div className="big">
       <BrowserRouter>
         <Switch>
           <Route exact path="/">

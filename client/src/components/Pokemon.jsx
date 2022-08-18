@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getPokemonDetail } from '../actions/index';
+import s from './Pokemon.module.css';
 
 function Pokemon(props) {
 
   return (
-    <div>
-      <h1>Pokemon</h1>
+    <div className={s.container}>
       <div>
-        <img src={props.image} alt="poke" />
+        <img src={props.image} width={150} height={150} alt="poke" />
       </div>
       <Link to={`/detail/${props.id}`}>
         <p>Name: {props.name}</p> 

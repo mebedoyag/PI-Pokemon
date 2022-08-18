@@ -1,0 +1,37 @@
+.container {
+  /* border: 1px solid red; */
+  background: #FAF3E3;
+  height: 100%;
+}
+
+.wrapper {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-around;
+}
+
+.pagination {
+  padding: 5px 20px;
+  text-align: right;
+}
+
+.bttn {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: 'Courier New', Courier, monospace;
+  color: #1A4D2E;
+  text-decoration: underline;
+}
+
+.bttn:hover {
+  cursor: pointer;
+  color: #FF9F29;
+}
+
+.page {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: red;
+}

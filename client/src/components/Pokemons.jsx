@@ -5,6 +5,7 @@ import Pokemon from './Pokemon';
 import { connect } from 'react-redux';
 
 import { changePage } from '../actions/index';
+import s from './Pokemons.module.css';
 
 function Pokemons(props) {
   const pokeNumber = 12;
@@ -12,17 +13,17 @@ function Pokemons(props) {
   const currentPokemons = props.pokemons.slice(page * pokeNumber, (page + 1) * pokeNumber);
 
   return (
-    <div>
-      <h1>Pokemons</h1>
-      {/* <PokeSearch />
-      <Filter page={page} />
-      <Order /> */}
-      <button onClick={() => page ? changePage(page - 1) : null}>Previous</button>
-      <button onClick={() => page < 3 ? changePage(page + 1) : changePage(0)}>Next</button>
-      <span>Current page {page + 1}</span>
-      {
-        currentPokemons.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)
-      }
+    <div className={s.container}>
+      <div className={s.pagination}>
+        <button className={s.bttn} onClick={() => page ? changePage(page - 1) : null}>Previous</button>
+        <span className={s.page}>{page + 1}</span>
+        <button className={s.bttn} onClick={() => page < 3 ? changePage(page + 1) : changePage(0)}>Next</button>
+      </div>
+      <div className={s.wrapper}>
+        {
+          currentPokemons.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)
+        }
+      </div>
     </div>
   );
 }
