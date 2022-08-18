@@ -1,0 +1,47 @@
+.container {
+  /* border: 2px solid blue; */
+
+}
+
+.form {
+  width: 400px;
+  margin: 20px auto;
+  background-color: rgba(0, 0, 0, 0.674);
+  color: #FF9F29;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.form > div {
+  margin-bottom: 20px;
+}
+
+.container label {
+  display: inline-block;
+  width: 100px;
+}
+
+.container input {
+  border: none;
+  padding: 5px;
+}
+
+.bttn {
+  padding: 20px 0;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #FF9F29;
+  color: #000;
+  flex: 1;
+}
+
+.bttn:hover {
+  cursor: pointer;
+  background-color: #FAF3E3;
+  color: #1A4D2E;
+}
+
+.wrapper {
+  display: flex;
+  padding: 0 10px;
+}
