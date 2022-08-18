@@ -12,5 +12,3 @@ function validate(inp) {
 }
 
 export default validate;
-
-// console.log(validate({name: 'mike'})); // TO CHECK

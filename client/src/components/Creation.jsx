@@ -53,12 +53,11 @@ function Creation(props) {
     <div className={s.container}>
       <form className={s.form}  action={`${host}/pokemons`} method="post" onSubmit={handleSubmit}>
         <div>
-          <label className={s.lab} htmlFor="name">Name</label>
+          <label htmlFor="name">Name</label>
           <input type="text" name="name" id="name" onChange={handleInpChan} value={input.name} />
+          {error.name ? <div className={s.err}><span >{error.name}</span></div> : null}          
         </div>
         <div>
-          {/* <label htmlFor="typeOne">Type</label>
-          <input type="text" name="typeOne" id="typeOne" onChange={handleInpChan} value={input.typeOne} /> */}
           <label htmlFor="typeOne">Type</label>
           <select name="typeOne" id="typeOne" onChange={handleInpChan}>
             {

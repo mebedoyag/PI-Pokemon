@@ -1,8 +1,3 @@
-.container {
-  /* border: 2px solid blue; */
-
-}
-
 .form {
   width: 400px;
   margin: 20px auto;
@@ -44,4 +39,13 @@
 .wrapper {
   display: flex;
   padding: 0 10px;
+}
+
+.lab {
+  border: 9px solid blue;
+}
+
+.err {
+  color: red;
+  text-align: center;
 }
