@@ -73,7 +73,7 @@ router.get('/pokemons', (req, res) => {
   }
 });
 
-router.get('/pokemons/:idPokemon', (req, res) => {
+router.get('/pokemons/:idPokemon', async (req, res) => {
   const { idPokemon } = req.params;
 
   if ( !isNaN( Number(idPokemon) ) ) {
@@ -86,13 +86,36 @@ router.get('/pokemons/:idPokemon', (req, res) => {
         res.status(404).json('Not found');
       })
   } else {
-    Pokemon.findByPk(idPokemon)
-      .then(value => {
-        res.json(value);
-      })
-      .catch(err => {
-        res.status(404).json('Not found');
-      })
+    // Pokemon.findByPk(idPokemon)
+    //   .then(value => {
+    //     res.json(value);
+    //   })
+    //   .catch(err => {
+    //     res.status(404).json('Not found');
+    //   })
+    const poke = await Pokemon.findOne({
+      where: {
+        id: idPokemon
+      },
+      include: Type
+    });
+    // console.log(JSON.stringify(poke, null, 4));
+    const typeNames = [poke.types[0].name];
+    const pokeData = { 
+      name: poke.name, 
+      typeNames, 
+      imgUrl: poke.imgUrl, 
+      height: poke.height, 
+      id: poke.id, 
+      weight: poke.weight,
+      life: poke.life,
+      attack: poke.attack,
+      defense: poke.defense,
+      speed: poke.speed 
+    };
+    // console.log(JSON.stringify(poke, null, 4));
+    // console.log(JSON.stringify(pokeData, null, 4));
+    res.json(pokeData);
   }
 });
 
