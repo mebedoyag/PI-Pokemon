@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Pokemon from './Pokemon';
+import s from './Pokemons.module.css';
 
 function Ordered(props) {
   let params = useParams();
@@ -33,7 +34,9 @@ function Ordered(props) {
   return (
     <div>
       <h1>Helloo</h1>
-      {pokeOrdered.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)}
+      <div className={s.wrapper}>
+        {pokeOrdered.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)}
+      </div>
     </div>
   )
 }

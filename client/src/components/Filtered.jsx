@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Pokemon from './Pokemon';
+import s from './Pokemons.module.css';
+
 
 function Filtered(props) {
   let params = useParams();
@@ -27,7 +29,9 @@ function Filtered(props) {
   return (
     <div>
       <h1>Helloo</h1>
-      {pokeFiltered.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)}
+      <div className={s.wrapper}>
+        {pokeFiltered.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)}
+      </div>
     </div>
   )
 }
