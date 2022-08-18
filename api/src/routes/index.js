@@ -1,19 +1,3 @@
-// const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
-
-// const router = Router();
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
-// ---> MINE
-
-// Todo's
-// ** Limit the pokemon general search to 40 -- https://pokeapi.co/api/v2/pokemon?limit=40&offset=0
-// ** Refactor the functions in utils.js (using abstraction)
-
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -61,7 +45,6 @@ router.get('/pokemons', (req, res) => {
 
             res.json([...values, ...result]);
 
-            // res.json(values);
           })
           .catch(err => {
             console.log(err);
@@ -86,20 +69,12 @@ router.get('/pokemons/:idPokemon', async (req, res) => {
         res.status(404).json('Not found');
       })
   } else {
-    // Pokemon.findByPk(idPokemon)
-    //   .then(value => {
-    //     res.json(value);
-    //   })
-    //   .catch(err => {
-    //     res.status(404).json('Not found');
-    //   })
     const poke = await Pokemon.findOne({
       where: {
         id: idPokemon
       },
       include: Type
     });
-    // console.log(JSON.stringify(poke, null, 4));
     const typeNames = [poke.types[0].name];
     const pokeData = { 
       name: poke.name, 
@@ -113,8 +88,6 @@ router.get('/pokemons/:idPokemon', async (req, res) => {
       defense: poke.defense,
       speed: poke.speed 
     };
-    // console.log(JSON.stringify(poke, null, 4));
-    // console.log(JSON.stringify(pokeData, null, 4));
     res.json(pokeData);
   }
 });
@@ -136,28 +109,12 @@ router.post('/pokemons', async (req, res) => {
   await poke.setTypes([typeOne]);
 
   res.json(poke);
-
-  // Pokemon.create({ name, typeOne })
-  //   .then(p => {
-  //     Type.findByPk(p.typeOne)
-  //       .then(t => {
-  //         PokemonType.create({ pokemonId: p.id, typeId: t.id });
-  //         res.json(p);
-  //       })
-  //       .catch(err => {
-  //         res.status(404).json('Not created');
-  //       })
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
 });
 
 router.get('/types', async (req, res) => {
   const types = await Type.findAll();
 
   if (!types.length) {
-    // console.log('There is nothing');
     axios.get('https://pokeapi.co/api/v2/type')
       .then(resp => {
         const types = resp.data.results.map(obj => { 
@@ -183,18 +140,6 @@ router.get('/test', async (req, res) => {
   } else {
     res.json(types);
   }
-  // const pokes = await Pokemon.findAll({
-  //   include: Type,
-  // });
-  // const result = pokes.map(poke => ({
-  //   name: poke.name,
-  //   id: poke.id,
-  //   typeNames: [poke.types[0].name],
-  //   imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
-  // }))
-  // res.json(result);
 })
-
-// <--- MINE
 
 module.exports = router;
