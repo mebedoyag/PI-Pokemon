@@ -1,7 +1,4 @@
 import Pokemon from './Pokemon';
-// import PokeSearch from './PokeSearch';
-// import Filter from './Filter';
-// import Order from './Order';
 import { connect } from 'react-redux';
 
 import { changePage } from '../actions/index';

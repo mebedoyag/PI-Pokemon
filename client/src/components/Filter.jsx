@@ -14,10 +14,6 @@ function Filter(props) {
       <label>Filter by: </label>
       <select onChange={handleChange}>
         <optgroup label="TYPE">
-          {/* <option value="normal">Normal</option>
-          <option value="fighting">fighting</option>
-          <option value="flying">Flying</option>
-          <option value="poison">Poison</option> */}
           {
             props.types.map(type => <option key={type.id} value={type.name}>{type.name}</option>)
           }
@@ -45,5 +41,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Filter);
-
-// export default Filter;

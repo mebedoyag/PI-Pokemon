@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { getPokemons, getTypes } from '../actions/index';
 import { connect } from 'react-redux';
 import s from './Landing.module.css';
-// import back from '../images/landing-backg2.jpg';
 
 function Landing(props) {
   return (
@@ -15,9 +14,6 @@ function Landing(props) {
             props.getTypes();
             }}>Ingresar</button>
         </Link>
-        {/* <div>
-          <img src={back} alt="" />
-        </div> */}
       </div>
     </div>
   );

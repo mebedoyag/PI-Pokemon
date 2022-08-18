@@ -4,7 +4,6 @@ function Order() {
   let history = useHistory();
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
     const path = `/order/${e.target.value}`;
     history.replace(path);
   }
