@@ -34,19 +34,24 @@ function Creation(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    props.postPokemons(JSON.stringify({ ...input }));
 
-    setInput({
-      name: '',
-      typeOne: '',
-      height: '',
-      weight: '',
-      life: '',
-      attack: '',
-      defense: '',
-      speed: ''
-    });
+    if (error.name) {
+      alert('No puede crear pokemon');
+    } else {
+      props.postPokemons(JSON.stringify({ ...input }));
+  
+      setInput({
+        name: '',
+        typeOne: '',
+        height: '',
+        weight: '',
+        life: '',
+        attack: '',
+        defense: '',
+        speed: ''
+      });
+    }
+    
   }
 
   return (

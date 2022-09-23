@@ -10,7 +10,7 @@ function Filtered(props) {
   let pokeFiltered = [];
 
   const pokeNumber = 12;
-  const currentPokemons = props.pokemons.slice(props.page * pokeNumber, (props.page + 1) * pokeNumber);
+  const currentPokemons = props.pokemons;
 
   if (att === "existing") {
     pokeFiltered = currentPokemons.filter(poke => {
