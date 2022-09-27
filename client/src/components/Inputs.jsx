@@ -1,12 +1,12 @@
-import PokeSearch from "./PokeSearch"
-import Filter from "./Filter"
-import Order from "./Order"
+import Search from "./Search";
+import Filter from "./Filter";
+import Order from "./Order";
 import s from './Inputs.module.css';
 
 function Inputs() {
   return (
     <div className={s.container}>
-      <PokeSearch />
+      <Search />
       <Filter />
       <Order />
     </div>
