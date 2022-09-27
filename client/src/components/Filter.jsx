@@ -14,9 +14,11 @@ function Filter(props) {
       <label>Filter by: </label>
       <select onChange={handleChange}>
         <optgroup label="TYPE">
-          {
-            props.types.map(type => <option key={type.id} value={type.name}>{type.name}</option>)
-          }
+          {props.types.map(type => (
+            <option 
+              key={type.id} 
+              value={type.name}>{type.name}
+            </option>))}
         </optgroup>
         <optgroup label="ORIGIN">
           <option key={100} value="existing">Existing</option>

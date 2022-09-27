@@ -9,9 +9,17 @@ function Search(props) {
 
   return (
     <div>
-      <input className={s.global} type="text" onChange={(e) => setInput(e.target.value)} value={input} />
+      <input 
+        className={s.global} 
+        type="text" 
+        onChange={(e) => setInput(e.target.value)} 
+        value={input} 
+      />
       <Link to={`/detail?name=${input}`}>
-        <button className={`${s.global} ${s.btt}`} onClick={() => props.getPokemonByName(input)}>
+        <button 
+          className={`${s.global} ${s.btt}`} 
+          onClick={() => props.getPokemonByName(input)}
+        >
           <span>Le's go</span>
         </button>
       </Link>
