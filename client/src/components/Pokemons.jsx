@@ -12,6 +12,7 @@ function Pokemons(props) {
   const endPos = (page + 1) * pokeNumber;
 
   const location = useLocation();
+  let totalPokes = 0;
   
   const getPokemons = () => {
     let filterObj = {};
@@ -48,6 +49,7 @@ function Pokemons(props) {
               .includes(filterObj.option);
           });
       } 
+      totalPokes = pokeFiltered.length;
       return pokeFiltered.slice(startPos, endPos);
     }
 
@@ -75,11 +77,15 @@ function Pokemons(props) {
             return 0;
           });
       }
+      totalPokes = pokeOrdered.length;
       return pokeOrdered.slice(startPos, endPos);
     }
-
+    totalPokes = pokemons.length;
     return pokemons.slice(startPos, endPos)
   };
+
+  const currentPoke = getPokemons();
+  const pages = Math.ceil(totalPokes / pokeNumber);
 
   return (
     <>
@@ -96,14 +102,14 @@ function Pokemons(props) {
           <span className={s.page}>{page + 1}</span>
           <button 
             className={s.bttn} 
-            onClick={() => page < 3 ? changePage(page + 1) 
+            onClick={() => page < pages - 1 ? changePage(page + 1) 
                           : changePage(0)}
           >
             Next
           </button>
         </div>
         <div className={s.wrapper}>
-          {getPokemons().map((poke, index) => (
+          {currentPoke.map((poke, index) => (
             <Pokemon 
               name={poke.name} 
               type={poke.typeNames} 

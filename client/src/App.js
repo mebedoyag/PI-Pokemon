@@ -10,8 +10,6 @@ import NavBar from './components/NavBar';
 import Pokemons from './components/Pokemons';
 import Detail from './components/Detail';
 import Creation from './components/Creation';
-import Filtered from './components/Filtered';
-import Ordered from './components/Ordered';
 import Inputs from './components/Inputs';
 
 function App() {
