@@ -33,7 +33,6 @@ function Ordered(props) {
 
   return (
     <div>
-      <h1>Helloo</h1>
       <div className={s.wrapper}>
         {pokeOrdered.map((poke, index) => <Pokemon name={poke.name} type={poke.typeNames} image={poke.imgUrl} key={index + 1} id={poke.id} />)}
       </div>

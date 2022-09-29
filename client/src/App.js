@@ -1,6 +1,9 @@
 import './App.css';
 
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { 
+  Route, 
+  Switch, 
+  BrowserRouter } from 'react-router-dom';
 
 import Landing from './components/Landing'; 
 import NavBar from './components/NavBar';
@@ -15,6 +18,17 @@ function App() {
   return (
     <div className="big">
       <BrowserRouter>
+        <Route exact path="/">
+          <Landing />
+        </Route>
+        <NavBar />
+        <Switch>
+          <Route exact path="/home">
+            <Pokemons />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+      {/* <BrowserRouter>
         <Switch>
           <Route exact path="/">
             <Landing />  
@@ -46,7 +60,7 @@ function App() {
             </Switch>
           </Route>
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }
