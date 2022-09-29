@@ -10,7 +10,6 @@ import NavBar from './components/NavBar';
 import Pokemons from './components/Pokemons';
 import Detail from './components/Detail';
 import Creation from './components/Creation';
-import Inputs from './components/Inputs';
 
 function App() {
   return (
@@ -26,6 +25,9 @@ function App() {
           </Route>
           <Route path="/detail/:id">
             <Detail />
+          </Route>
+          <Route path="/creation">
+            <Creation />
           </Route>
         </Switch>
       </BrowserRouter>

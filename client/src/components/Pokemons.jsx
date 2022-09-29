@@ -45,17 +45,19 @@ function Pokemons(props) {
       <div className={s.pagination}>
         <button 
           className={s.bttn} 
-          onClick={() => page 
-                        ? changePage(page - 1) 
-                        : null}>
+          onClick={() => (
+            page 
+              ? changePage(page - 1) 
+              : null)}>
           Previous
         </button>
         <span className={s.page}>{page + 1}</span>
         <button 
           className={s.bttn} 
-          onClick={() => page < pages - 1 
-                        ? changePage(page + 1) 
-                        : changePage(0)}>
+          onClick={() => (
+            page < pages - 1
+              ? changePage(page + 1) 
+              : changePage(0))}>
           Next
         </button>
       </div>
