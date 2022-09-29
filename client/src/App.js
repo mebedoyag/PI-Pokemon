@@ -24,6 +24,9 @@ function App() {
           <Route exact path="/home">
             <Pokemons />
           </Route>
+          <Route path="/detail/:id">
+            <Detail />
+          </Route>
         </Switch>
       </BrowserRouter>
       {/* <BrowserRouter>

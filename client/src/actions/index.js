@@ -15,7 +15,11 @@ export function getPokemonDetail(idPokemon) {
     return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
       .then(data => {
-        dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
+        dispatch({ 
+          type: "GET_POKEMON_DETAIL", 
+          payload: data 
+        });
+        dispatch(toggleLoading());
       });
   }
 }
@@ -64,5 +68,11 @@ export function changePage(page) {
   return {
     type: "CHANGE_PAGE",
     payload: page
+  }
+}
+
+export function toggleLoading() {
+  return {
+    type: "TOGGLE_LOADING",
   }
 }
