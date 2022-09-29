@@ -4,6 +4,10 @@ import { changePage, toggleLoading } from '../actions/index';
 import s from './Pokemons.module.css';
 import { connect } from 'react-redux';
 import { useLocation } from "react-router-dom";
+import { 
+  getFilterObj, 
+  filterPokemons,
+  orderPokemons } from '../utils';
 
 function Pokemons(props) {
   const pokeNumber = 10;
@@ -15,68 +19,17 @@ function Pokemons(props) {
   let totalPokes = 0;
   
   const getPokemons = () => {
-    let filterObj = {};
-  
-    if (location.search) {
-      filterObj = location.search
-        .slice(1)
-        .split("&")
-        .map(str => str.split("="))
-        .reduce((result, pair) => {
-          result[pair[0]] = pair[1];
-          return result;
-        }, {});
-    }
+    let filterObj = getFilterObj(location.search);
 
     if (filterObj.type === "filter") {
-      let pokeFiltered = [];
-
-      if (filterObj.option === "existing") {
-        pokeFiltered = pokemons
-          .filter(poke => {
-            return !isNaN(Number(poke.id));
-          });
-      } else if (filterObj.option === "created") {
-        pokeFiltered = pokemons
-          .filter(poke => {
-            return isNaN(Number(poke.id));
-          });
-      } else {
-        pokeFiltered = pokemons
-          .filter(poke => {
-            return poke
-              .typeNames
-              .includes(filterObj.option);
-          });
-      } 
+      let pokeFiltered = filterPokemons(filterObj.option, pokemons);
       totalPokes = pokeFiltered.length;
       return pokeFiltered.slice(startPos, endPos);
     }
 
     if (filterObj.type === "order") {
-      let pokeOrdered = [];
 
-      if (filterObj.option === "asc") {
-        pokeOrdered = pokemons
-          .sort((a, b) => {
-            const nameA = a.name;
-            const nameB = b.name;
-            
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-      } else {
-        pokeOrdered = pokemons
-          .sort((a, b) => {
-            const nameA = a.name;
-            const nameB = b.name;
-            
-            if (nameA < nameB) return 1;
-            if (nameA > nameB) return -1;
-            return 0;
-          });
-      }
+      let pokeOrdered = orderPokemons(filterObj.option, pokemons);
       totalPokes = pokeOrdered.length;
       return pokeOrdered.slice(startPos, endPos);
     }
@@ -92,17 +45,17 @@ function Pokemons(props) {
       <div className={s.pagination}>
         <button 
           className={s.bttn} 
-          onClick={() => page ? changePage(page - 1) 
-                        : null}
-        >
+          onClick={() => page 
+                        ? changePage(page - 1) 
+                        : null}>
           Previous
         </button>
         <span className={s.page}>{page + 1}</span>
         <button 
           className={s.bttn} 
-          onClick={() => page < pages - 1 ? changePage(page + 1) 
-                        : changePage(0)}
-        >
+          onClick={() => page < pages - 1 
+                        ? changePage(page + 1) 
+                        : changePage(0)}>
           Next
         </button>
       </div>
