@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.container h1 {
+  text-align: center;
+}
+
 .wrapper {
   /* border: 2px solid red; */
   display: flex;

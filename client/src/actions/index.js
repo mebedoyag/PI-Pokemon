@@ -2,16 +2,22 @@ const host = 'http://localhost:3001';
 
 export function getPokemons() {
   return function(dispatch) {
+    dispatch(showLoading(true));
     return fetch(`${host}/pokemons`)
       .then(resp => resp.json())
       .then(data => {
-        dispatch({ type: "GET_POKEMONS", payload: data })
+        dispatch({ 
+          type: "GET_POKEMONS", 
+          payload: data 
+        });
+        dispatch(showLoading(false));
       });
   }
 }
 
 export function getPokemonDetail(idPokemon) {
   return function(dispatch) {
+    dispatch(showLoading(true));
     return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
       .then(data => {
@@ -19,7 +25,7 @@ export function getPokemonDetail(idPokemon) {
           type: "GET_POKEMON_DETAIL", 
           payload: data 
         });
-        dispatch(toggleLoading());
+        dispatch(showLoading(false));
       });
   }
 }
@@ -71,8 +77,9 @@ export function changePage(page) {
   }
 }
 
-export function toggleLoading() {
+export function showLoading(value) {
   return {
     type: "TOGGLE_LOADING",
+    payload: value
   }
 }

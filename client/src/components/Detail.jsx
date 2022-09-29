@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { 
   getPokemonDetail, 
   resetPokemonDetail, 
-  toggleLoading} from '../actions/index';
+  showLoading} from '../actions/index';
 
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,7 @@ function Detail(props) {
   const { 
     getPokemonDetail, 
     resetPokemonDetail, 
-    toggle } = props;
+    showLoading } = props;
   
   useEffect(() => {
     getPokemonDetail(params.id);
@@ -22,7 +22,7 @@ function Detail(props) {
   useEffect(() => {
     return () => {
       resetPokemonDetail();
-      toggle();
+      // showLoading();
     };
   }, []);
 
@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getPokemonDetail: id => dispatch(getPokemonDetail(id)),
     resetPokemonDetail: () => dispatch(resetPokemonDetail()),
-    toggle: () => dispatch(toggleLoading())
+    showLoading: () => dispatch(showLoading())
   };
 }
 

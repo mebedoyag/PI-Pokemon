@@ -46,7 +46,7 @@ function rootReducer(state = initialState, action) {
   if (action.type === "TOGGLE_LOADING") {
     return {
       ...state,
-      loading: !state.loading
+      loading: action.payload
     }
   }
   return state;
