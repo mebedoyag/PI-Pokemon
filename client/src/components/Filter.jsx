@@ -11,9 +11,9 @@ function Filter(props) {
     history.replace(path);
   }
 
-  useEffect(() => {
-    props.getTypes()
-  }, []);
+  // useEffect(() => {
+  //   props.getTypes()
+  // }, []);
 
   return (
     <div>

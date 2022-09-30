@@ -81,9 +81,9 @@ function Pokemons(props) {
     </>
   );
 
-  useEffect(() => {
-    fetchPokemons();
-  }, [])
+  // useEffect(() => {
+  //   fetchPokemons();
+  // }, [])
 
   return (
     <>
