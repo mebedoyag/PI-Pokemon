@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { validate } from '../utils';
+import { getTypes } from '../actions/index';
 
 import { connect } from 'react-redux';
 import { postPokemons } from '../actions/index';
@@ -18,6 +20,10 @@ function Creation(props) {
     defense: '',
     speed: ''
   });
+
+  useEffect(() => {
+    props.getTypes();
+  }, [])
 
   const [error, setError] = useState({});
 
@@ -172,7 +178,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    postPokemons: (poke) => dispatch(postPokemons(poke))
+    postPokemons: (poke) => dispatch(postPokemons(poke)),
+    getTypes: () => dispatch(getTypes())
   };
 };
 
