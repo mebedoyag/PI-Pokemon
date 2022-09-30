@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import validate from '../utils';
+import { validate } from '../utils';
 
 import { connect } from 'react-redux';
 import { postPokemons } from '../actions/index';
@@ -34,12 +34,10 @@ function Creation(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (error.name) {
       alert('No puede crear pokemon');
     } else {
       props.postPokemons(JSON.stringify({ ...input }));
-  
       setInput({
         name: '',
         typeOne: '',
@@ -51,7 +49,6 @@ function Creation(props) {
         speed: ''
       });
     }
-    
   }
 
   return (
@@ -73,7 +70,8 @@ function Creation(props) {
           />
           {error.name 
             ? <div className={s.err}>
-                <span >{error.name}</span></div> 
+                <span >{error.name}</span>
+              </div> 
             : null}          
         </div>
         <div>

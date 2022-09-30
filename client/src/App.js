@@ -31,39 +31,6 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-      {/* <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            <Landing />  
-          </Route>
-          <Route>
-            <NavBar /> 
-            <Switch>
-              <Route path="/creation">
-                <Creation />
-              </Route>
-              <Route path="/detail/:id">
-                <Detail />
-              </Route>
-              <Route>
-                <Inputs />
-                <Route exact path="/home">
-                  <Pokemons />
-                </Route>
-                <Route path="/detail">
-                  <Detail />
-                </Route>
-                <Route path="/filter/:attribute">
-                  <Filtered />
-                </Route>
-                <Route path="/order/:name">
-                  <Ordered />
-                </Route>
-              </Route>
-            </Switch>
-          </Route>
-        </Switch>
-      </BrowserRouter> */}
     </div>
   );
 }

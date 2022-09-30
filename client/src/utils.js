@@ -1,4 +1,4 @@
-function validate(inp) {
+export function validate(inp) {
   let errors = {};
   let regexp = /\d/g;
 
@@ -72,5 +72,3 @@ export function orderPokemons(option, pokemons) {
   }
   return pokeOrdered;
 }
-
-export default validate;
