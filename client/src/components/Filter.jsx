@@ -1,5 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { getTypes } from '../actions/index';
+import { useEffect } from 'react';
 
 function Filter(props) {
   let history = useHistory();
@@ -8,6 +10,10 @@ function Filter(props) {
     const path = `/home?type=filter&option=${e.target.value}`;
     history.replace(path);
   }
+
+  useEffect(() => {
+    props.getTypes()
+  }, []);
 
   return (
     <div>
@@ -37,5 +43,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  null
+  { getTypes }
 )(Filter);
