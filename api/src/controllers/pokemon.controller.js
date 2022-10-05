@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 
 const endPoint = 'https://pokeapi.co/api/v2/pokemon?limit=40&offset=0';
 
@@ -47,13 +47,25 @@ exports.getPokemons = async (req, res) => {
       return axios.get(poke.url);
     }));
     
-    const dataPokemons = respPokemonsDetail.map((poke) => {
+    const pokemonsData = respPokemonsDetail.map((poke) => {
       const { id, name, types } = poke.data;
       const pokemonTypes = types.map(typeObj => typeObj.type.name);
 
       return { id, name, types: pokemonTypes };
     });
-    res.json(dataPokemons);
+
+    const pokemonsTypes = await Pokemon.findAll({
+      attributes: ['id', 'name'],
+      include: Type
+    });
+    const pokemonsDb = pokemonsTypes.map((poke) => ({
+      id: poke.id,
+      name: poke.name,
+      types: poke.types.map(type => type.name),
+    }))
+    // console.log(JSON.stringify(pokemonsDb, null, 2));
+
+    res.json([...pokemonsData, ...pokemonsDb]);
 
   } catch (error) { 
     res.status(500).json({
