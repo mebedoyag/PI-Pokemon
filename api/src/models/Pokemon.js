@@ -2,6 +2,8 @@ const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 
+const imgPokemon = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png";
+
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
@@ -40,7 +42,8 @@ module.exports = (sequelize) => {
       defaultValue: 10,
     },
     imgUrl: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: imgPokemon,
     }
   }, {
     timestamps: false

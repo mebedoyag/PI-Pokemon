@@ -3,13 +3,14 @@ const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
 
-const { 
+const {  
   getPokemons,
   createPokemon,
 } = require('../controllers/pokemon.controller');
 
 const { Pokemon, Type, PokemonType } = require('../db');
 
+router.post('/pokemons', createPokemon);
 router.get('/pokemons', getPokemons);
 
 router.get('/pokemons/:idPokemon', async (req, res) => {
@@ -47,8 +48,6 @@ router.get('/pokemons/:idPokemon', async (req, res) => {
     res.json(pokeData);
   }
 });
-
-router.post('/pokemons', createPokemon);
 
 router.get('/test', async (req, res) => {
   const types = await Type.findAll();
