@@ -3,58 +3,11 @@ const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
 
+const { getPokemons } = require('../controllers/pokemon.controller');
+
 const { Pokemon, Type, PokemonType } = require('../db');
 
-router.get('/pokemons', (req, res) => {
-  const { name } = req.query;
-
-  if (name) {
-    utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${name}` })
-      .then(data => {
-        res.json(data);
-      })
-      .catch(err => {
-        Pokemon.findAll({
-          where: {
-            name: name
-          }
-        })
-          .then(poke => {
-            res.json(poke);
-          })
-          .catch(err => {
-            res.status(404).json('Not found');
-          })
-      });
-  } else {
-    axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
-      .then(resp => {
-  
-        Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
-          .then(async values => {
-            
-            const pokes = await Pokemon.findAll({
-              include: Type,
-            });
-            const result = pokes.map(poke => ({
-              name: poke.name,
-              id: poke.id,
-              typeNames: [poke.types[0].name],
-              imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
-            }));
-
-            res.json([...values, ...result]);
-
-          })
-          .catch(err => {
-            console.log(err);
-          })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-});
+router.get('/pokemons', getPokemons);
 
 router.get('/pokemons/:idPokemon', async (req, res) => {
   const { idPokemon } = req.params;
