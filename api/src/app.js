@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 // Routes
-const routes = require('./routes/pokemons.routes.js');
+const pokemonRoutes = require('./routes/pokemons.routes.js');
+const typeRoutes = require('./routes/types.routes');
 
 require('./db.js'); 
 
@@ -24,7 +25,8 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
+server.use('/', pokemonRoutes);
+server.use('/types', typeRoutes);
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const endPoint = 'https://pokeapi.co/api/v2/pokemon?limit=40&offset=0';
+const imgPokemon = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png";
 
 exports.getPokemons = async (req, res) => {
   try {
@@ -14,7 +15,7 @@ exports.getPokemons = async (req, res) => {
       const {id, name, types} = poke.data;
       const pokemonTypes = types.map(typeObj => typeObj.type.name);
       return { id, name, types: pokemonTypes };
-    })
+    });
 
     res.json(dataPokemons);
   } catch (error) { 
@@ -22,7 +23,7 @@ exports.getPokemons = async (req, res) => {
       message: error.message,
     })
   }
-}
+};
 
 // , (req, res) => {
 //   const { name } = req.query;
@@ -73,4 +74,28 @@ exports.getPokemons = async (req, res) => {
 //         console.log(err);
 //       })
 //   }
+// }
+
+exports.createPokemon = async (req, res) => {
+  const { name, typeOne, typeTwo } = req.body;
+  res.send('creating pokemon');
+}
+
+// , async (req, res) => {
+//   const { name, 
+//     typeOne, 
+//     typeTwo, 
+//     height, 
+//     weight,
+//     life,
+//     attack,
+//     defense,
+//     speed, 
+//   } = req.body; 
+//   const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png";
+
+//   const poke = await Pokemon.create({ name, height, weight, imgUrl, life, attack, defense, speed });
+//   await poke.setTypes([typeOne]);
+
+//   res.json(poke);
 // }

@@ -3,7 +3,10 @@ const router = express.Router();
 const axios = require('axios');
 const utils = require('../utils');
 
-const { getPokemons } = require('../controllers/pokemon.controller');
+const { 
+  getPokemons,
+  createPokemon,
+} = require('../controllers/pokemon.controller');
 
 const { Pokemon, Type, PokemonType } = require('../db');
 
@@ -45,45 +48,7 @@ router.get('/pokemons/:idPokemon', async (req, res) => {
   }
 });
 
-router.post('/pokemons', async (req, res) => {
-  const { name, 
-    typeOne, 
-    typeTwo, 
-    height, 
-    weight,
-    life,
-    attack,
-    defense,
-    speed, 
-  } = req.body; 
-  const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png";
-
-  const poke = await Pokemon.create({ name, height, weight, imgUrl, life, attack, defense, speed });
-  await poke.setTypes([typeOne]);
-
-  res.json(poke);
-});
-
-router.get('/types', async (req, res) => {
-  const types = await Type.findAll();
-
-  if (!types.length) {
-    axios.get('https://pokeapi.co/api/v2/type')
-      .then(resp => {
-        const types = resp.data.results.map(obj => { 
-          return { name: obj.name } 
-        });
-        Type.bulkCreate(types); 
-  
-        res.json(types);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  } else {
-    res.json(types);
-  }
-});
+router.post('/pokemons', createPokemon);
 
 router.get('/test', async (req, res) => {
   const types = await Type.findAll();
