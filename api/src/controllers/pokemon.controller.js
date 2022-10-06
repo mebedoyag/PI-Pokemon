@@ -1,7 +1,9 @@
 const axios = require('axios');
 const { Pokemon, Type } = require('../db');
+const { formatPokemon } = require('../utils');
 
 const endPoint = 'https://pokeapi.co/api/v2/pokemon?limit=40&offset=0';
+const endPointPoke = 'https://pokeapi.co/api/v2/pokemon/';
 
 exports.createPokemon = async (req, res) => {
   try {
@@ -18,25 +20,6 @@ exports.createPokemon = async (req, res) => {
     })
   }
 }
-
-// , async (req, res) => {
-//   const { name, 
-//     typeOne, 
-//     typeTwo, 
-//     height, 
-//     weight,
-//     life,
-//     attack,
-//     defense,
-//     speed, 
-//   } = req.body; 
-//   const imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png";
-
-//   const poke = await Pokemon.create({ name, height, weight, imgUrl, life, attack, defense, speed });
-//   await poke.setTypes([typeOne]);
-
-//   res.json(poke);
-// }
 
 exports.getPokemons = async (req, res) => {
   try {
@@ -63,7 +46,6 @@ exports.getPokemons = async (req, res) => {
       name: poke.name,
       types: poke.types.map(type => type.name),
     }))
-    // console.log(JSON.stringify(pokemonsDb, null, 2));
 
     res.json([...pokemonsData, ...pokemonsDb]);
 
@@ -74,54 +56,29 @@ exports.getPokemons = async (req, res) => {
   }
 };
 
-// , (req, res) => {
-//   const { name } = req.query;
+exports.getPokemon = async (req, res) => {
+  const { idPokemon } = req.params;
 
-//   if (name) {
-//     utils.getPokeDataDetail({ url: `https://pokeapi.co/api/v2/pokemon/${name}` })
-//       .then(data => {
-//         res.json(data);
-//       })
-//       .catch(err => {
-//         Pokemon.findAll({
-//           where: {
-//             name: name
-//           }
-//         })
-//           .then(poke => {
-//             res.json(poke);
-//           })
-//           .catch(err => {
-//             res.status(404).json('Not found');
-//           })
-//       });
-//   } else {
-//     axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
-//       .then(resp => {
-  
-//         Promise.all(resp.data.results.map(poke => utils.getPokeData(poke)))
-//           .then(async values => {
-            
-//             const pokes = await Pokemon.findAll({
-//               include: Type,
-//             });
-//             const result = pokes.map(poke => ({
-//               name: poke.name,
-//               id: poke.id,
-//               typeNames: [poke.types[0].name],
-//               imgUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/800.png'
-//             }));
+  if (!isNaN(Number(idPokemon))) {
+    const response = await axios.get(`${endPointPoke}${idPokemon}`);
+    const pokemon = formatPokemon(response.data);
+    console.log(Object.keys(response.data));
+    
+    res.json(pokemon);
+    return;
+  }
 
-//             res.json([...values, ...result]);
-
-//           })
-//           .catch(err => {
-//             console.log(err);
-//           })
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       })
-//   }
-// }
+  const pokemon = await Pokemon.findOne({
+    where: {
+      id: idPokemon
+    },
+    include: Type
+   });
+   const types = pokemon.types.map((type) => type.name);
+   
+  res.json({
+    ...pokemon.dataValues,
+    types,
+  }); 
+};
 

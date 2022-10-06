@@ -25,22 +25,22 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       defaultValue: 10,
     },
-    life: {
-      type: DataTypes.INTEGER,
-      defaultValue: 10
-    },
-    attack: {
-      type: DataTypes.INTEGER,
-      defaultValue: 10,
-    },
-    defense: {
-      type: DataTypes.INTEGER,
-      defaultValue: 10,
-    },
-    speed: {
-      type: DataTypes.INTEGER,
-      defaultValue: 10,
-    },
+    // life: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue: 10
+    // },
+    // attack: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue: 10,
+    // },
+    // defense: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue: 10,
+    // },
+    // speed: {
+    //   type: DataTypes.INTEGER,
+    //   defaultValue: 10,
+    // },
     imgUrl: {
       type: DataTypes.STRING,
       defaultValue: imgPokemon,
