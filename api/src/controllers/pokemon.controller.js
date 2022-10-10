@@ -94,6 +94,15 @@ exports.updatePokemon = async (req, res) => {
 };
 
 exports.deletePokemon = async (req, res) => {
+  const { idPokemon } = req.params;
+  console.log(idPokemon);
+
+  await Pokemon.destroy({
+    where: {
+      id: idPokemon
+    }
+  });
+
   res.send('deleting pokemons');
 };
 
