@@ -62,7 +62,6 @@ exports.getPokemon = async (req, res) => {
   if (!isNaN(Number(idPokemon))) {
     const response = await axios.get(`${endPointPoke}${idPokemon}`);
     const pokemon = formatPokemon(response.data);
-    console.log(Object.keys(response.data));
     
     res.json(pokemon);
     return;
