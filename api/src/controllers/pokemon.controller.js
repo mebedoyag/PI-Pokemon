@@ -75,3 +75,25 @@ exports.getPokemon = async (req, res) => {
   }); 
 };
 
+exports.updatePokemon = async (req, res) => { 
+  try {
+    const { idPokemon } = req.params;
+    const { name, height, weight } = req.body;
+    
+    const pokemon = await Pokemon.findByPk(idPokemon);
+    pokemon.name = name;
+    pokemon.height = height;
+    pokemon.weight = weight;
+    await pokemon.save();
+  
+    res.json(pokemon);
+    
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+};
+
+exports.deletePokemon = async (req, res) => {
+  res.send('deleting pokemons');
+};
+
