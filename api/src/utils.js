@@ -19,3 +19,20 @@ exports.formatPokemon = function(poke) {
     imgUrl,
   };
 };
+
+exports.formatPokemons = function(pokes) {
+  return pokes.map((poke) => {
+    const { id, name, types } = poke.data;
+    const pokemonTypes = types.map(typeObj => typeObj.type.name);
+
+    return { id, name, types: pokemonTypes };
+  });
+};
+
+exports.formatPokemonsDb = function(pokes) {
+  return pokes.map((poke) => ({
+    id: poke.id,
+    name: poke.name,
+    types: poke.types.map(type => type.name),
+  }))
+}

@@ -7,8 +7,8 @@ const {
   getPokemon
 } = require('../controllers/pokemon.controller');
 
-router.post('/pokemons', createPokemon);
-router.get('/pokemons', getPokemons);
-router.get('/pokemons/:idPokemon', getPokemon);
+router.post('/', createPokemon);
+router.get('/', getPokemons);
+router.get('/:idPokemon', getPokemon);
 
 module.exports = router;

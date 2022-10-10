@@ -25,7 +25,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', pokemonRoutes);
+server.use('/pokemons', pokemonRoutes);
 server.use('/types', typeRoutes);
 
 // Error catching endware.
@@ -37,12 +37,3 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 module.exports = server;
-
-// ---> MINE
-
-// const port = 3000;
-// server.listen(port, () => {
-//   console.log(`Hey there, I am listening to the port: ${port}`)
-// })
-
-// <--- MINE

@@ -1,6 +1,10 @@
 const axios = require('axios');
 const { Pokemon, Type } = require('../db');
-const { formatPokemon } = require('../utils');
+const { 
+  formatPokemon,
+  formatPokemons,
+  formatPokemonsDb 
+} = require('../utils');
 
 const endPoint = 'https://pokeapi.co/api/v2/pokemon?limit=40&offset=0';
 const endPointPoke = 'https://pokeapi.co/api/v2/pokemon/';
@@ -19,7 +23,7 @@ exports.createPokemon = async (req, res) => {
       message: error.message,
     })
   }
-}
+};
 
 exports.getPokemons = async (req, res) => {
   try {
@@ -29,23 +33,13 @@ exports.getPokemons = async (req, res) => {
     const respPokemonsDetail = await Promise.all(dataUrls.map(async (poke) => {
       return axios.get(poke.url);
     }));
-    
-    const pokemonsData = respPokemonsDetail.map((poke) => {
-      const { id, name, types } = poke.data;
-      const pokemonTypes = types.map(typeObj => typeObj.type.name);
-
-      return { id, name, types: pokemonTypes };
-    });
+    const pokemonsData = formatPokemons(respPokemonsDetail);
 
     const pokemonsTypes = await Pokemon.findAll({
       attributes: ['id', 'name'],
       include: Type
     });
-    const pokemonsDb = pokemonsTypes.map((poke) => ({
-      id: poke.id,
-      name: poke.name,
-      types: poke.types.map(type => type.name),
-    }))
+    const pokemonsDb = formatPokemonsDb(pokemonsTypes);
 
     res.json([...pokemonsData, ...pokemonsDb]);
 
