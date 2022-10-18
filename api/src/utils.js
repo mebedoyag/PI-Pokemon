@@ -21,11 +21,12 @@ exports.formatPokemon = function(poke) {
 };
 
 exports.formatPokemons = function(pokes) {
-  return pokes.map((poke) => {
-    const { id, name, types } = poke.data;
+  return pokes.map(poke => {
+    const { id, name, types, sprites } = poke.data;
     const pokemonTypes = types.map(typeObj => typeObj.type.name);
+    const imgUrl = sprites.other["official-artwork"]["front_default"];
 
-    return { id, name, types: pokemonTypes };
+    return { id, name, types: pokemonTypes, imgUrl };
   });
 };
 

@@ -27,13 +27,13 @@ exports.createPokemon = async (req, res) => {
 
 exports.getPokemons = async (req, res) => {
   try {
-    const respPokemonsUrls = await axios.get(endPoint);
-    const dataUrls = respPokemonsUrls.data.results;
+    const responseObj = await axios.get(endPoint);
+    const results = responseObj.data.results;
 
-    const respPokemonsDetail = await Promise.all(dataUrls.map(async (poke) => {
+    const responsePokes = await Promise.all(results.map(poke => {
       return axios.get(poke.url);
     }));
-    const pokemonsData = formatPokemons(respPokemonsDetail);
+    const pokemonsData = formatPokemons(responsePokes);
 
     const pokemonsTypes = await Pokemon.findAll({
       attributes: ['id', 'name'],
