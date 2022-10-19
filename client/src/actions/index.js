@@ -50,16 +50,6 @@ export function resetPokemonDetail() {
   return { type: "RESET_POKEMON_DETAIL" };
 }
 
-// export function getPokemonByName(name) {
-//   return function(dispatch) {
-//     return fetch(`${host}/pokemons?name=${name}`)
-//       .then(resp => resp.json())
-//       .then(data => {
-//         dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
-//       });
-//   }
-// }
-
 export function getTypes() {
   return function(dispatch) {
     return fetch(`${host}/types`)

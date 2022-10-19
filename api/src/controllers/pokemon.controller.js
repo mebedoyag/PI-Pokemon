@@ -15,7 +15,7 @@ exports.createPokemon = async (req, res) => {
     
     const pokemon = await Pokemon.create({ name, height, weight });
     await pokemon.setTypes([typeOne]);
-  
+
     res.json(pokemon); 
     
   } catch (error) {
