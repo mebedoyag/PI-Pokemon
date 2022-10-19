@@ -30,26 +30,6 @@ export function getPokemonDetail(idPokemon) {
   }
 }
 
-export function getPokemonByName(name) {
-  return function(dispatch) {
-    return fetch(`${host}/pokemons?name=${name}`)
-      .then(resp => resp.json())
-      .then(data => {
-        dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
-      });
-  }
-}
-
-export function getTypes() {
-  return function(dispatch) {
-    return fetch(`${host}/types`)
-      .then(resp => resp.json())
-      .then(data => {
-        dispatch({ type: "GET_TYPES", payload: data })
-      });
-  }
-}
-
 export function postPokemons(poke) {
   return function(dispatch) {
     return fetch(`${host}/pokemons`, { 
@@ -68,6 +48,26 @@ export function postPokemons(poke) {
 
 export function resetPokemonDetail() {
   return { type: "RESET_POKEMON_DETAIL" };
+}
+
+// export function getPokemonByName(name) {
+//   return function(dispatch) {
+//     return fetch(`${host}/pokemons?name=${name}`)
+//       .then(resp => resp.json())
+//       .then(data => {
+//         dispatch({ type: "GET_POKEMON_DETAIL", payload: data })
+//       });
+//   }
+// }
+
+export function getTypes() {
+  return function(dispatch) {
+    return fetch(`${host}/types`)
+      .then(resp => resp.json())
+      .then(data => {
+        dispatch({ type: "GET_TYPES", payload: data })
+      });
+  }
 }
 
 export function changePage(page) {

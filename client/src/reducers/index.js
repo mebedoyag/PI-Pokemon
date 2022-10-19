@@ -19,12 +19,6 @@ function rootReducer(state = initialState, action) {
       pokemonDetail: action.payload
     }
   }
-  if (action.type === "GET_TYPES") {
-    return {
-      ...state,
-      types: action.payload
-    }
-  }
   if (action.type === "POST_POKEMON") {
     return {
       ...state,
@@ -35,6 +29,12 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       pokemonDetail: {}
+    }
+  }
+  if (action.type === "GET_TYPES") {
+    return {
+      ...state,
+      types: action.payload
     }
   }
   if (action.type === "CHANGE_PAGE") {
