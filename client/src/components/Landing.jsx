@@ -11,7 +11,7 @@ function Landing(props) {
         <Link to="/home">
           <button className={s.bttn} onClick={() => {
             props.getPokemons();
-            props.getTypes();
+            // props.getTypes();
             }}>Ingresar</button>
         </Link>
       </div>

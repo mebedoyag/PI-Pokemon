@@ -72,7 +72,7 @@ function Pokemons(props) {
         {currentPoke.map((poke, index) => (
           <Pokemon 
             name={poke.name} 
-            type={poke.typeNames} 
+            type={poke.types} 
             image={poke.imgUrl} 
             key={index + 1} 
             id={poke.id} 
