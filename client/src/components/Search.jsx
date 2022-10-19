@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { getPokemonByName } from '../actions/index';
 import { connect } from 'react-redux';
 import s from './Search.module.css';
 
@@ -41,13 +39,7 @@ const mapStateToProps = (state) => ({
   pokemons: state.pokemonsLoaded
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getPokemonByName: name => dispatch(getPokemonByName(name))
-  };
-};
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(Search);
