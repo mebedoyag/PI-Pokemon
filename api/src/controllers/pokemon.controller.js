@@ -11,10 +11,10 @@ const endPointPoke = 'https://pokeapi.co/api/v2/pokemon/';
 
 exports.createPokemon = async (req, res) => {
   try {
-    const { name, typeOne, typeTwo } = req.body;
+    const { name, typeOne, height, weight } = req.body;
     
-    const pokemon = await Pokemon.create({ name });
-    await pokemon.setTypes([typeOne, typeTwo]);
+    const pokemon = await Pokemon.create({ name, height, weight });
+    await pokemon.setTypes([typeOne]);
   
     res.json(pokemon); 
     
