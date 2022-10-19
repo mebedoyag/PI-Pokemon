@@ -1,13 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { 
-  createTypes, 
-  getTypes 
-} = require('../controllers/type.controller');
+const { fetchAndCreateTypes } = require('../controllers/type.controller');
 
-router.get('/', getTypes);
-router.post('/', createTypes);
+router.get('/', fetchAndCreateTypes);
 
 module.exports = router;
 
