@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { 
   getPokemonDetail, 
   resetPokemonDetail, 
-  showLoading} from '../actions/index';
+} from '../actions/index';
 
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,8 @@ function Detail(props) {
   const { 
     getPokemonDetail, 
     resetPokemonDetail, 
-    showLoading } = props;
+    pokemon
+  } = props;
   
   useEffect(() => {
     getPokemonDetail(params.id);
@@ -22,30 +23,30 @@ function Detail(props) {
   useEffect(() => {
     return () => {
       resetPokemonDetail();
-      // showLoading();
     };
   }, []);
 
   const pokeDetail = (
     <>
-    <h1>{props.pokemon.name}</h1>
+    <h1>{pokemon.name}</h1>
     <div className={s.wrapper}>
       <div>
         <img 
-          src={props.pokemon.imgUrl} 
+          src={pokemon.imgUrl} 
           height={400} 
           width={400} 
           alt="poke details" 
         />
       </div>
       <div>
-        <p>Types: {props.pokemon.typeNames}</p>
-        <p>Height: {props.pokemon.height}</p>
-        <p>Weight: {props.pokemon.weight}</p>
-        <p>Life: {props.pokemon.life}</p>  
-        <p>Attack: {props.pokemon.attack}</p>  
-        <p>Defense: {props.pokemon.defense}</p>  
-        <p>Speed: {props.pokemon.speed}</p>         
+        {pokemon.types.map(type => <p>Type: {type}</p>)}
+        {/* <p>Types: {pokemon.types}</p> */}
+        <p>Height: {pokemon.height}</p>
+        <p>Weight: {pokemon.weight}</p>
+        <p>Life: {10}</p>  
+        <p>Attack: {10}</p>  
+        <p>Defense: {10}</p>  
+        <p>Speed: {10}</p>         
       </div>
     </div>
     </>
@@ -72,7 +73,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getPokemonDetail: id => dispatch(getPokemonDetail(id)),
     resetPokemonDetail: () => dispatch(resetPokemonDetail()),
-    showLoading: () => dispatch(showLoading())
   };
 }
 

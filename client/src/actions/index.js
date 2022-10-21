@@ -21,6 +21,7 @@ export function getPokemonDetail(idPokemon) {
     return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
       .then(data => {
+        // console.log(data.types[0]);
         dispatch({ 
           type: "GET_POKEMON_DETAIL", 
           payload: data 
@@ -41,13 +42,18 @@ export function postPokemons(poke) {
     })
       .then(resp => resp.json())
       .then(data => {
-        dispatch({ type: "POST_POKEMON", payload: data })
+        dispatch({ 
+          type: "POST_POKEMON", 
+          payload: data 
+        })
       });
   }
 }
 
 export function resetPokemonDetail() {
-  return { type: "RESET_POKEMON_DETAIL" };
+  return { 
+    type: "RESET_POKEMON_DETAIL" 
+  };
 }
 
 export function getTypes() {
@@ -55,7 +61,10 @@ export function getTypes() {
     return fetch(`${host}/types`)
       .then(resp => resp.json())
       .then(data => {
-        dispatch({ type: "GET_TYPES", payload: data })
+        dispatch({ 
+          type: "GET_TYPES", 
+          payload: data 
+        })
       });
   }
 }
@@ -64,12 +73,12 @@ export function changePage(page) {
   return {
     type: "CHANGE_PAGE",
     payload: page
-  }
+  };
 }
 
 export function showLoading(value) {
   return {
     type: "TOGGLE_LOADING",
     payload: value
-  }
+  };
 }
