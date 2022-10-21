@@ -15,8 +15,11 @@ exports.createPokemon = async (req, res) => {
     
     const pokemon = await Pokemon.create({ name, height, weight });
     await pokemon.setTypes([typeOne]);
+    const { id, imgUrl } = pokemon;
 
-    res.json(pokemon); 
+    const pokeTypeObj = await Type.findByPk(typeOne);
+
+    res.json({ id, name, imgUrl, types: [pokeTypeObj.name] }); 
     
   } catch (error) {
     res.status(500).json({
@@ -36,7 +39,7 @@ exports.getPokemons = async (req, res) => {
     const pokemonsData = formatPokemons(responsePokes);
 
     const pokemonsTypes = await Pokemon.findAll({
-      attributes: ['id', 'name'],
+      attributes: ['id', 'name', 'imgUrl'],
       include: Type
     });
     const pokemonsDb = formatPokemonsDb(pokemonsTypes);

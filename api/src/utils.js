@@ -31,9 +31,10 @@ exports.formatPokemons = function(pokes) {
 };
 
 exports.formatPokemonsDb = function(pokes) {
-  return pokes.map((poke) => ({
+  return pokes.map(poke => ({
     id: poke.id,
     name: poke.name,
     types: poke.types.map(type => type.name),
+    imgUrl: poke.imgUrl
   }))
 }
