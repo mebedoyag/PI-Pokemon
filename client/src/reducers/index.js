@@ -15,14 +15,14 @@ function rootReducer(state = initialState, action) {
   }
   if (action.type === "GET_POKEMON_DETAIL") {
     return {
-      ...state,
+      ...state, 
       pokemonDetail: action.payload
     }
   }
   if (action.type === "POST_POKEMON") {
     return {
       ...state,
-      // pokemonsLoaded: [...pokemonsLoaded, action.payload]
+      pokemonsLoaded: [...state.pokemonsLoaded, action.payload]
     }
   }
   if (action.type === "RESET_POKEMON_DETAIL") {
