@@ -11,19 +11,13 @@ function Landing(props) {
         <Link to="/home">
           <button className={s.bttn} onClick={() => {
             props.getPokemons();
-            // props.getTypes();
+            props.getTypes();
             }}>Ingresar</button>
         </Link>
       </div>
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    pokemons: state.pokemonsLoaded
-  }
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -33,6 +27,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Landing);
