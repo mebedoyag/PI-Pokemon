@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getPokemonDetail } from '../actions/index';
+import { deletePokemon } from '../actions/index';
 import s from './Pokemon.module.css';
 
 function Pokemon(props) {
@@ -19,13 +19,14 @@ function Pokemon(props) {
       </Link>
       <p>Type one: {props.type[0]}</p>
       <p>Type two: {props.type[1]}</p>
+      <button onClick={() => props.deletePokemon(props.id)}>x</button>
     </div>
   );
  }
 
  const mapDispatchToProps = (dispatch) => {
   return {
-    getPokemonDetail: (id) => dispatch(getPokemonDetail(id))
+    deletePokemon: (id) => dispatch(deletePokemon(id))
   }
  };
 

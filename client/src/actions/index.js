@@ -82,3 +82,10 @@ export function showLoading(value) {
     payload: value
   };
 }
+
+export function deletePokemon(id) {
+  return {
+    type: "DELETE_POKEMON",
+    payload: id
+  };
+}

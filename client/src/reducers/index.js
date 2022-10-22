@@ -49,6 +49,12 @@ function rootReducer(state = initialState, action) {
       loading: action.payload
     }
   }
+  if (action.type === "DELETE_POKEMON") {
+    return {
+      ...state,
+      pokemonsLoaded: state.pokemonsLoaded.filter(poke => poke.id !== action.payload)
+    }
+  }
   return state;
 }
 
