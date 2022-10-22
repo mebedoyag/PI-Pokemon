@@ -21,7 +21,6 @@ export function getPokemonDetail(idPokemon) {
     return fetch(`${host}/pokemons/${idPokemon}`)
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data.types[0]);
         dispatch({ 
           type: "GET_POKEMON_DETAIL", 
           payload: data 
