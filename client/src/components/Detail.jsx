@@ -39,8 +39,8 @@ function Detail(props) {
         />
       </div>
       <div>
-        {pokemon.types.map(type => <p>Type: {type}</p>)}
-        {/* <p>Types: {pokemon.types}</p> */}
+        {/* {pokemon.types.map(type => <p>Type: {type}</p>)} */}
+        <p>Types: {pokemon.types}</p>
         <p>Height: {pokemon.height}</p>
         <p>Weight: {pokemon.weight}</p>
         <p>Life: {10}</p>  
