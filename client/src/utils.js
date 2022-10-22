@@ -39,7 +39,7 @@ export function filterPokemons(option, pokemons) {
     pokeFiltered = pokemons
       .filter(poke => {
         return poke
-          .typeNames
+          .types
           .includes(option);
       });
   } 
