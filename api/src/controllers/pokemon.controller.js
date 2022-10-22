@@ -70,12 +70,6 @@ exports.getPokemon = async (req, res) => {
     },
     include: Type
    });
-  //  const types = pokemon.types.map((type) => type.name);
-   
-  // res.json({
-  //   ...pokemon.dataValues,
-  //   types,
-  // });
   const [result] = formatPokemonsDb([pokemon]);
   const { height, weight } = pokemon;
 
