@@ -4,6 +4,10 @@ import { deletePokemon } from '../actions/index';
 import s from './Pokemon.module.css';
 
 function Pokemon(props) {
+  const handleClick = () => {
+    props.deletePokemon(props.id);
+  }
+
   return (
     <div className={s.container}>
       <div>
@@ -19,7 +23,7 @@ function Pokemon(props) {
       </Link>
       <p>Type one: {props.type[0]}</p>
       <p>Type two: {props.type[1]}</p>
-      <button onClick={() => props.deletePokemon(props.id)}>x</button>
+      <button onClick={handleClick}>x</button>
     </div>
   );
  }

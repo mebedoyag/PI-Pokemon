@@ -104,6 +104,6 @@ exports.deletePokemon = async (req, res) => {
     }
   });
 
-  res.send('deleting pokemons');
+  res.json('deleting pokemons');
 };
 

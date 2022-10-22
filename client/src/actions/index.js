@@ -84,6 +84,14 @@ export function showLoading(value) {
 }
 
 export function deletePokemon(id) {
+  if (typeof id === 'string') {
+    fetch(`${host}/pokemons/${id}`, {
+      method: 'DELETE'
+    })
+      .then(response => response.json())
+      .then(data => console.log('this is the data: ', data));
+  }
+
   return {
     type: "DELETE_POKEMON",
     payload: id
