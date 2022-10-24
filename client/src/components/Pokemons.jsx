@@ -1,16 +1,18 @@
-import Pokemon from './Pokemon';
-import Inputs from './Inputs';
-import { 
-  changePage, 
-  getPokemons } from '../actions/index';
-import s from './Pokemons.module.css';
 import { connect } from 'react-redux';
 import { useLocation } from "react-router-dom";
-import { useEffect } from 'react';
+import Pokemon from './Pokemon';
+import Inputs from './Inputs';
+import NavBar from './NavBar';
+import s from './Pokemons.module.css'; 
+
+import { 
+  changePage, 
+} from '../actions/index';
 import { 
   getFilterObj, 
   filterPokemons,
-  orderPokemons } from '../utils';
+  orderPokemons 
+} from '../utils';
 
 function Pokemons(props) {
   const pokeNumber = 10;
@@ -19,7 +21,7 @@ function Pokemons(props) {
     pokemons, 
     changePage, 
     loading,
-    fetchPokemons } = props;
+  } = props;
   const startPos = page * pokeNumber;
   const endPos = (page + 1) * pokeNumber;
 
@@ -81,12 +83,9 @@ function Pokemons(props) {
     </>
   );
 
-  // useEffect(() => {
-  //   fetchPokemons();
-  // }, [])
-
   return (
     <>
+      <NavBar />
       <Inputs />
       <div className={s.container}>
         {loading 
@@ -108,7 +107,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changePage: (page) => dispatch(changePage(page)),
-    fetchPokemons: () => dispatch(getPokemons()),
   };
 };
 

@@ -15,11 +15,10 @@ function App() {
   return (
     <div className="big">
       <BrowserRouter>
-        <Route exact path="/">
-          <Landing />
-        </Route>
-        <NavBar />
         <Switch>
+          <Route exact path="/">
+            <Landing />
+          </Route>
           <Route exact path="/home">
             <Pokemons />
           </Route>

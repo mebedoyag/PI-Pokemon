@@ -1,12 +1,13 @@
 import { connect } from "react-redux";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import NavBar from "./NavBar";
+import s from './Detail.module.css';
+
 import { 
   getPokemonDetail, 
   resetPokemonDetail, 
 } from '../actions/index';
-
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import s from './Detail.module.css';
 
 function Detail(props) {
   let params = useParams();
@@ -53,12 +54,14 @@ function Detail(props) {
   );
 
   return (
-    <div className={s.container}>
-      {props.loading 
-        ? <h1>Loading...</h1>
-        : pokeDetail}
-    </div>
-    
+    <>
+      <NavBar />
+      <div className={s.container}>
+        {props.loading 
+          ? <h1>Loading...</h1>
+          : pokeDetail}
+      </div>
+    </>
   );
 }
 
