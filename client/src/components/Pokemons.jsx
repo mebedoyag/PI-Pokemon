@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useLocation } from "react-router-dom";
 import Pokemon from './Pokemon';
@@ -7,7 +8,11 @@ import s from './Pokemons.module.css';
 
 import { 
   changePage, 
+  restorePokemons,
+  restoreTypes,
+  showLoading,
 } from '../actions/index';
+
 import { 
   getFilterObj, 
   filterPokemons,
@@ -19,11 +24,39 @@ function Pokemons(props) {
   const { 
     page, 
     pokemons, 
-    changePage, 
+    types,
     loading,
+    changePage, 
+    restorePokemons,
+    restoreTypes,
+    showLoading
   } = props;
   const startPos = page * pokeNumber;
   const endPos = (page + 1) * pokeNumber;
+
+  useEffect(() => {
+    const pokesSaved = localStorage.getItem('pokes');
+    const typesSaved = localStorage.getItem('types');
+    
+    if (pokesSaved) {
+      const p = JSON.parse(pokesSaved);
+      restorePokemons(p);
+      showLoading(false);
+    }
+    if (typesSaved) {
+      const t = JSON.parse(typesSaved);
+      restoreTypes(t);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('pokes', JSON.stringify(pokemons));
+
+  }, [pokemons]);
+
+  useEffect(() => {
+    localStorage.setItem('types', JSON.stringify(types));
+  }, [types])
 
   const location = useLocation();
   let totalPokes = 0;
@@ -91,6 +124,7 @@ function Pokemons(props) {
         {loading 
           ? <h1>Loading...</h1>
           : containerElement}
+          {/* {containerElement} */}
       </div>
     </>
   );
@@ -101,12 +135,16 @@ const mapStateToProps = (state) => {
     pokemons: state.pokemonsLoaded,
     page: state.currentPage,
     loading: state.loading,
+    types: state.types,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changePage: (page) => dispatch(changePage(page)),
+    restorePokemons: (pokes) => dispatch(restorePokemons(pokes)),
+    showLoading: (b) => dispatch(showLoading(b)),
+    restoreTypes: (t) => dispatch(restoreTypes(t))
   };
 };
 

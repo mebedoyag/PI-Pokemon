@@ -10,6 +10,7 @@ function Landing(props) {
         <h1 className={s.title}>Henry Pokemon</h1>
         <Link to="/home">
           <button className={s.bttn} onClick={() => {
+            localStorage.removeItem('pokes');
             props.getPokemons();
             props.getTypes();
             }}>Ingresar</button>

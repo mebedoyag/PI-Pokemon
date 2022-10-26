@@ -6,7 +6,6 @@ import {
   BrowserRouter } from 'react-router-dom';
 
 import Landing from './components/Landing'; 
-import NavBar from './components/NavBar';
 import Pokemons from './components/Pokemons';
 import Detail from './components/Detail';
 import Creation from './components/Creation';

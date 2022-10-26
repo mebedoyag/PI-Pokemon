@@ -96,3 +96,17 @@ export function deletePokemon(id) {
     payload: id
   };
 }
+
+export function restorePokemons(pokes) {
+  return {
+    type: 'GET_POKEMONS',
+    payload: pokes
+  };
+}
+
+export function restoreTypes(types) {
+  return {
+    type: "GET_TYPES",
+    payload: types
+  }
+}
